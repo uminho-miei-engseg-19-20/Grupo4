@@ -19,11 +19,14 @@ Os resultados obtidos foram os esperados, ou seja, a operação de geração de 
 
 ### Pergunta 1.2
 
+O __HAVEGE__ é um algoritmo que implementa um gerador de números aleatórios, através da exploração de modificações no volatilidade dos estados internos do *hardware* como fonte de incerteza. O projeto *haveged* adaptou o algortimo para remediar as condições de baixa entropia que podem ocorrer um sistema *LINUX*, especialmente se este estiver debaixo de uma grande carga.
 
 |                         Comando                        | Tempo de execução |
 | :----------------------------------------------------: | :----------------:|
 | ```head -c 1024 /dev/random  \| openssl enc -base64``` | 0.007 segundos    |
 | ```head -c 1024 /dev/urandom \| openssl enc -base64``` | 0.005 segundos    |
+
+Como era esperado, com a utilização da ferramenta *haveged*, o tempo do comando ```head -c 1024 /dev/urandom \| openssl enc -base64``` não mudou significamente, uma vez que, praticamente não tem influência. Por outro lado, o comando que utilizava o dispositivo ```/dev/random``` sofreu uma redução drástica, ficando praticamente igual ao ```/dev/urandom```, isto porque o algoritmo gera a entropia suficiente de uma forma muito rápida.
 
 ## Exercício 2 - Partilha/Divisão de segredo (Secret Sharing/Splitting)
 
