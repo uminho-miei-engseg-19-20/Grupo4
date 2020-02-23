@@ -11,7 +11,19 @@ A82491 - Tiago Pinheiro
 
 ### Pergunta 1.1
 
+|                         Comando                        | Tempo de execução |
+| :----------------------------------------------------: | :----------------:|
+| ```head -c 32   /dev/random  \| openssl enc -base64``` | 0.007 segundos    |
+| ```head -c 64   /dev/random  \| openssl enc -base64``` | 0.006 segundos    |
+| ```head -c 1024 /dev/random  \| openssl enc -base64``` | 50+ minutos       |
+| ```head -c 1024 /dev/urandom \| openssl enc -base64``` | 0.008 segundos    |
+
 ### Pergunta 1.2
+
+|                         Comando                        | Tempo de execução |
+| :----------------------------------------------------: | :----------------:|
+| ```head -c 1024 /dev/random  \| openssl enc -base64``` | 0.007 segundos    |
+| ```head -c 1024 /dev/urandom \| openssl enc -base64``` | 0.005 segundos    |
 
 ## Exercício 2 - Partilha/Divisão de segredo (Secret Sharing/Splitting)
 
