@@ -11,6 +11,10 @@ A82491 - Tiago Pinheiro
 
 ### Pergunta 1.1
 
+  Em sistemas operativos *Unix*, ```/dev/random``` e ```/dev/urandom``` são ficheiros especiais que servem como geradores de números pseudoaleatórios. Estes dispositivos permitem ter acesso ao ruído presente no sistema operativo, sendo esse ruído para gerar os tais números pseudoaleatórios.
+
+  Em termos de diferenças, o ```/dev/random``` bloqueia até que a entropia seja suficiente e, dessa forma, a semente possa ser gerada com segurança. Depois, não volta a bloquear até que o processo esteja concluído. Por outro lado, o ```/dev/urandom``` não espera que exista entropia suficiente, simplesmente, gera imediatamente o número aleatório. Pelas razões apresentadas anteriormente, o ```/dev/random``` é apropriado, e usado, para fins de segurança, mas o ```/dev/urandom``` é fortemente desaconselhado.
+
 |                         Comando                        | Tempo de execução |
 | :----------------------------------------------------: | :----------------:|
 | ```head -c 32   /dev/random  \| openssl enc -base64``` | 0.007 segundos    |
@@ -18,7 +22,10 @@ A82491 - Tiago Pinheiro
 | ```head -c 1024 /dev/random  \| openssl enc -base64``` | 50+ minutos       |
 | ```head -c 1024 /dev/urandom \| openssl enc -base64``` | 0.008 segundos    |
 
+Os resultados obtidos foram os esperados, ou seja, a operação de geração de quantidades mais pequenas de bytes é bastante rápido mesmo que use o ```/dev/random```. Mas quando o número já é elevado, como é o caso de 1024 bytes, nota-se uma diferença brutal de 8 milisegundos para 50 minutos. Isto acontece porque o dispositivo ```/dev/random``` bloqueia até atingir o valor de entropia ideal e o ```/dev/urandom``` não bloqueia e gera o número de imediato.
+
 ### Pergunta 1.2
+
 
 |                         Comando                        | Tempo de execução |
 | :----------------------------------------------------: | :----------------:|
