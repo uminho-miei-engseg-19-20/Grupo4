@@ -4,9 +4,9 @@
 
 ### Pergunta 1.1
 
-  Em sistemas operativos *Unix*, ```/dev/random``` e ```/dev/urandom``` são ficheiros especiais que servem como geradores de números pseudoaleatórios. Estes dispositivos permitem ter acesso ao ruído presente no sistema operativo, sendo esse ruído para gerar os tais números pseudoaleatórios.
+  Em sistemas operativos *Unix*, ```/dev/random``` e ```/dev/urandom``` são ficheiros especiais que servem de geradores de números pseudoaleatórios. Estes dispositivos permitem ter acesso ao ruído presente no sistema operativo, sendo que esse ruído é usado para gerar os tais números pseudoaleatórios.
 
-  Em termos de diferenças, o ```/dev/random``` bloqueia até que a entropia seja suficiente e, dessa forma, a semente possa ser gerada com segurança. Depois, não volta a bloquear até que o processo esteja concluído. Por outro lado, o ```/dev/urandom``` não espera que exista entropia suficiente, simplesmente, gera imediatamente o número aleatório. Pelas razões apresentadas anteriormente, o ```/dev/random``` é apropriado, e usado, para fins de segurança, mas o ```/dev/urandom``` é fortemente desaconselhado.
+  Em termos de diferenças, o ```/dev/random``` bloqueia até que a entropia seja suficiente e, dessa forma, a semente possa ser gerada com segurança. Depois, não volta a bloquear até que o processo esteja concluído. Por outro lado, o ```/dev/urandom``` não espera que exista entropia suficiente, simplesmente, gera imediatamente o número pseudoaleatório. Pelas razões apresentadas anteriormente, o ```/dev/random``` é apropriado, e usado, para fins de segurança, mas o ```/dev/urandom``` é fortemente desaconselhado.
 
 |                         Comando                        | Tempo de execução |
 | :----------------------------------------------------: | :----------------:|
@@ -15,11 +15,11 @@
 | ```head -c 1024 /dev/random  \| openssl enc -base64``` | 50+ minutos       |
 | ```head -c 1024 /dev/urandom \| openssl enc -base64``` | 0.008 segundos    |
 
-Os resultados obtidos foram os esperados, ou seja, a operação de geração de quantidades mais pequenas de bytes é bastante rápido mesmo que use o ```/dev/random```. Mas quando o número já é elevado, como é o caso de 1024 bytes, nota-se uma diferença brutal de 8 milisegundos para 50 minutos. Isto acontece porque o dispositivo ```/dev/random``` bloqueia até atingir o valor de entropia ideal e o ```/dev/urandom``` não bloqueia e gera o número de imediato.
+Os resultados obtidos foram os esperados, ou seja, a operação de geração de quantidades mais pequenas de bytes é bastante rápido mesmo que use o ```/dev/random```. Mas quando o número já é elevado, como é o caso de 1024 *bytes*, nota-se uma diferença brutal de 8 milisegundos para 50 minutos. Isto acontece porque o dispositivo ```/dev/random``` bloqueia até atingir o valor de entropia ideal e o ```/dev/urandom``` não bloqueia e gera o número de imediato.
 
 ### Pergunta 1.2
 
-O __HAVEGE__ é um algoritmo que implementa um gerador de números aleatórios, através da exploração de modificações no volatilidade dos estados internos do *hardware* como fonte de incerteza. O projeto *haveged* adaptou o algortimo para remediar as condições de baixa entropia que podem ocorrer um sistema *LINUX*, especialmente se este estiver debaixo de uma grande carga.
+O [HAVEGE](http://www.irisa.fr/caps/projects/hipsor/) é um algoritmo que implementa um gerador de números aleatórios, através da exploração de modificações no volatilidade dos estados internos do *hardware* como fonte de incerteza. O projeto [haveged](http://www.issihosts.com/haveged/index.html) adaptou o algortimo para remediar as condições de baixa entropia que podem ocorrer um sistema *LINUX*, especialmente se este estiver debaixo de uma grande carga.
 
 |                         Comando                        | Tempo de execução |
 | :----------------------------------------------------: | :----------------:|
@@ -34,7 +34,7 @@ Como era esperado, com a utilização da ferramenta *haveged*, o tempo do comand
 
 #### A
 
-Primeiramente foi executado o comando ```openssl genrsa -aes128 -out mykey.pem 1024``` para gerar a chave privada, usado para assinar o objeto JWT. Obtendo o seguinte resultado:
+Primeiramente foi executado o comando ```openssl genrsa -aes128 -out mykey.pem 1024``` para gerar a chave privada, usado para assinar o objeto *JWT*. Obtendo o seguinte resultado:
 
 ```
 -----BEGIN RSA PRIVATE KEY-----
@@ -79,7 +79,7 @@ KoZIhvcNAQELBQADgYEAZ7hfRwlQzBICX5BySy5EgpMXGN8A6rWMxPYDdz0/qKvu
 -----END CERTIFICATE-----
 ```
 
-Por último, é chamado o programa *createSharedSecret* através do comando ```python createSharedSecret-app.py 8 5 1 mykey.pem```. Desta forma, o segredo é dividido em 8 partes e são precisas 5 para o reconstruir.
+Por último, é chamado o programa ```createSharedSecret``` através do comando ```python createSharedSecret-app.py 8 5 1 mykey.pem```. Desta forma, o segredo é dividido em 8 partes e são precisas 5 para o reconstruir.
 
 ```
 Private key passphrase: 1234
@@ -104,7 +104,7 @@ eyJhbGciOiAiUlMyNTYifQ.eyJvYmplY3QiOiBbIjgtNDc3M2YzYTYzODllMTYxYmNjNjI2ZjdhYjJiM
 
 #### B
 
-Em ambos os casos, a execução do programa com número de partes de inferior ao número pré-estabelecido do __quorum__  não permite aceder ao segredo. A grande diferença é que no programa ```recoverSecretFromAllComponents``` não é possível aceder ao segredo usando o número do __quorum__ pré-estabelecido sendo precisas todas as partes, enquanto que no ```recoverSecretFromComponents``` apenas são necessárias as partes pré-estabelecidas.
+Em ambos os casos, a execução do programa com número de partes de inferior ao número pré-estabelecido do *quorum*  não permite aceder ao segredo. A grande diferença é que no programa ```recoverSecretFromAllComponents``` não é possível aceder ao segredo usando o número do *quorum* pré-estabelecido sendo precisas todas as partes, enquanto que no ```recoverSecretFromComponents``` apenas são necessárias as partes pré-estabelecidas.
 
 ```
 $ python recoverSecretFromAllComponents-app.py 5 1 mykey.crt
