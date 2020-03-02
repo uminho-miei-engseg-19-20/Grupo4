@@ -24,9 +24,9 @@ Como é possível ver no *pdf* em anexo, o *site* não usa a versão mais recent
 
 #### iii. **DROWN** na secção de detalhe do protocolo
 
-O **DROWN**, *Decrypting RSA with Obsolete and Weakened eNcryption*, é um ataque. É um *bug* de segurança *cross-protocol* que ataca servidores que suportam os protocolos modernos SSLv3/TLS usando para isso o protocolo *SSLv2*, que já não tem suporte e é insegurado. Através do uso deste protocolo o atacante obtém uma vantagem que permite ataquer as conexões usando protocolos atuais, que seriam seguros não fosse o facto explicado anteriormente.
+O **DROWN**, *Decrypting RSA with Obsolete and Weakened eNcryption*, é um ataque. Por outras palavras, é um *bug* de segurança *cross-protocol* que ataca servidores que suportam os protocolos modernos SSLv3/TLS, usando para isso o protocolo *SSLv2*, que já não tem suporte e é insegurado. Através do uso deste protocolo o atacante obtém uma vantagem que permite atacar as conexões usando protocolos atuais, que seriam seguros não fosse o facto explicado anteriormente.
 
-Como o protocolo *SSLv2* não está a ser utilizado, não existe perigo do servidor sofrer um ataque de **DROWN**. O  
+Como o protocolo *SSLv2* não está a ser utilizado, não existe perigo do servidor sofrer um ataque de **DROWN**.
 
 ## Exercício 3 - Protocolo SSH
 
