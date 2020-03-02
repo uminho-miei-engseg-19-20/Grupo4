@@ -12,8 +12,8 @@ A82491 - Tiago Pinheiro
 ### Trabalhos:
 
 * [TPC1](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC1) - Aula 2 - 17/02
-* [TPC2](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC2) - Aula 3 - 17/02
-* [TPC3](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC3) - Aula 4 - 17/02
+* [TPC2](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC2) - Aula 3 - 02/03
+* [TPC3](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC3) - Aula 4 - 02/03
 *
 *
 *
