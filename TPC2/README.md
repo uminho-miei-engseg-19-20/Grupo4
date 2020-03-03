@@ -31,3 +31,45 @@ Como o protocolo *SSLv2* não está a ser utilizado, não existe perigo do servi
 ## Exercício 3 - Protocolo SSH
 
 ### Pergunta 3.1
+
+#### Anexo de resultados do *ssh-audit*
+
+* 89.153.16.233:
+
+|    Server       | 89.153.16.233                 |
+|:---------------:|:-----------------------------:|
+| Cidade:         | Braga                         |
+| País:           | Portugal                      |
+| Organização:    | ZON Tv Cabo                   |
+| ISP:            | Nos Comunicacoes, S.A.        |
+| Último Update:  | 2020-03-01T00:34:35.515226    |
+| Hostname:       | a89-153-16-233.cpe.netcabo.pt |
+| ASP:            | AS2860                        |
+| Versão SSH:     | SSH-2.0-OpenSSH_8.0           |
+
+* 188.81.26.149:
+
+|    Server       | 188.81.26.149                 |
+|:---------------:|:-----------------------------:|
+| Cidade:         | Braga                         |
+| País:           | Portugal                      |
+| Organização:    | MEO                           |
+| ISP:            | MEO                           |
+| Último Update:  | 2020-03-02T07:49:22.140221    |
+| Hostname:       | bl16-26-149.dsl.telepac.pt    |
+| ASP:            | AS3243                        |
+| Versão SSH:     | SSH-2.0-dropbear_0.52         |
+
+#### Versões de software
+
+#### Versão com mais vulnerabilidades
+
+A versão 4.4 do *Squid* é a versão que têm mais vulnerabilidades registadas. Existindo 4 vulnerabilidades associadas ao servidor 89.153.16.233 que afetam esta versão.
+
+#### Vulnerabilidade mais grave
+
+A vulnerabildiade mais grave encontrada ([CVE-2019-12525](https://www.cvedetails.com/cve-details.php?cve_id=CVE-2019-12525)) diz respeito às versões 3.3.9 até 3.5.28 e 4.X até 4.7 do *Squid*.
+
+#### Gravidade da vulnerabilidade
+
+A vulnerabilidade, classificada com valor 7.5, é grave. Pois causa alterações em ficheiros do do sistema e causa uma redução da performance do sistema. Para além disso, não é necessário autenticação e a complexidade de acesso é muito baixa para um atacante. Porém, a vulnerabilidade não garante acesso ao sistema.
