@@ -32,44 +32,53 @@ Como o protocolo *SSLv2* não está a ser utilizado, não existe perigo do servi
 
 ### Pergunta 3.1
 
-#### Anexo de resultados do *ssh-audit*
+#### 1 - Anexo de resultados do *ssh-audit*
 
-* 89.153.16.233:
+- [ZON Tv Cabo](https://www.shodan.io/host/83.132.9.167)
+	- [SSH-AUDIT *output*](./ZON.txt)
 
-|    Server       | 89.153.16.233                 |
-|:---------------:|:-----------------------------:|
-| Cidade:         | Braga                         |
-| País:           | Portugal                      |
-| Organização:    | ZON Tv Cabo                   |
-| ISP:            | Nos Comunicacoes, S.A.        |
-| Último Update:  | 2020-03-01T00:34:35.515226    |
-| Hostname:       | a89-153-16-233.cpe.netcabo.pt |
-| ASP:            | AS2860                        |
-| Versão SSH:     | SSH-2.0-OpenSSH_8.0           |
+- [MEO](https://www.shodan.io/host/188.81.26.149#22):
+	- [SSH-AUDIT *output*](./MEO.txt)
 
-* 188.81.26.149:
+#### 2 - Versões de software
 
-|    Server       | 188.81.26.149                 |
-|:---------------:|:-----------------------------:|
-| Cidade:         | Braga                         |
-| País:           | Portugal                      |
-| Organização:    | MEO                           |
-| ISP:            | MEO                           |
-| Último Update:  | 2020-03-02T07:49:22.140221    |
-| Hostname:       | bl16-26-149.dsl.telepac.pt    |
-| ASP:            | AS3243                        |
-| Versão SSH:     | SSH-2.0-dropbear_0.52         |
+**ZON Tv Cabo**
 
-#### Versões de software
+# general
+(gen) banner: SSH-2.0-OpenSSH_3.8.1p1 Debian-8.sarge.2
+(gen) software: OpenSSH 3.8.1p1
+(gen) compatibility: OpenSSH 3.7-6.6, Dropbear SSH 0.52
+(gen) compression: enabled (zlib)
+...
 
-#### Versão com mais vulnerabilidades
+**MEO**
 
-A versão 4.4 do *Squid* é a versão que têm mais vulnerabilidades registadas. Existindo 4 vulnerabilidades associadas ao servidor 89.153.16.233 que afetam esta versão.
+# general
+(gen) banner: SSH-2.0-dropbear_0.52
+(gen) software: Dropbear SSH 0.52
+(gen) compatibility: OpenSSH 3.7-6.6, Dropbear SSH 0.52
+(gen) compression: enabled (zlib, zlib@openssh.com)
+...
 
-#### Vulnerabilidade mais grave
+#### 3 - Versão com mais vulnerabilidades
 
-A vulnerabildiade mais grave encontrada ([CVE-2019-12525](https://www.cvedetails.com/cve-details.php?cve_id=CVE-2019-12525)) diz respeito às versões 3.3.9 até 3.5.28 e 4.X até 4.7 do *Squid*.
+**ZON Tv Cabo**
 
-#### Gravidade da vulnerabilidade
+- [SSH-AUDIT](./ZON.txt) - 18 vulnerabilidades
+- [SHODAN Website](https://www.shodan.io/host/83.132.9.167) - 15 vulnerabilidades
+- [CVE Details - Debian 8.0.2](https://www.cvedetails.com/version-search.php?vendor=Debian&product=Debian+Linux&version=8.0.2) - 0 vulnerabilidades
+- [CVE Details - OpenSSH 3.8.1p1](https://www.cvedetails.com/vulnerability-list/vendor_id-97/product_id-585/version_id-25112/) - 19 vulnerabilidades
 
-A vulnerabilidade, classificada com valor 7.5, é grave. Pois causa alterações em ficheiros do do sistema e causa uma redução da performance do sistema. Para além disso, não é necessário autenticação e a complexidade de acesso é muito baixa para um atacante. Porém, a vulnerabilidade não garante acesso ao sistema.
+**MEO**
+
+- [SSH-AUDIT](./MEO.txt) - 18 vulnerabilidades
+- [SHODAN Website](https://www.shodan.io/host/188.81.26.149#22) - 15 vulnerabilidades
+- [CVE Details - Dropbear 0.52](https://www.cvedetails.com/vulnerability-list/vendor_id-15806/product_id-33536/version_id-346043/) - 3 vulnerabilidades
+
+#### 4 - Vulnerabilidade mais grave
+
+Depois de analisar todas as vulnerabildiades encontradas, as duas mais graves foram o [CVE-2016-7406](https://www.cvedetails.com/cve-details.php?cve_id=CVE-2016-7406) e [CVE-2016-7407](https://www.cvedetails.com/cve-details.php?cve_id=CVE-2016-7407).
+
+#### 5 - Gravidade da vulnerabilidade
+
+A vulnerabilidade, classificada com valor 10, é muito grave. Pois revela toda a informação do sistema e deixa a integridade do sistema totalmente comprometida. Para além disso existe um *shutdown* total dos recursos afetados. Por fim, a dificuldade de acesso é baixa e não é necessário autenticação para realizar o ataque.
