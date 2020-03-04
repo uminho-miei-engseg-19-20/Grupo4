@@ -43,22 +43,22 @@ Como o protocolo *SSLv2* não está a ser utilizado, não existe perigo do servi
 #### 2 - Versões de software
 
 **ZON Tv Cabo**
-
+```
 # general
 (gen) banner: SSH-2.0-OpenSSH_3.8.1p1 Debian-8.sarge.2
 (gen) software: OpenSSH 3.8.1p1
 (gen) compatibility: OpenSSH 3.7-6.6, Dropbear SSH 0.52
 (gen) compression: enabled (zlib)
-...
+```
 
 **MEO**
-
+```
 # general
 (gen) banner: SSH-2.0-dropbear_0.52
 (gen) software: Dropbear SSH 0.52
 (gen) compatibility: OpenSSH 3.7-6.6, Dropbear SSH 0.52
 (gen) compression: enabled (zlib, zlib@openssh.com)
-...
+```
 
 #### 3 - Versão com mais vulnerabilidades
 
