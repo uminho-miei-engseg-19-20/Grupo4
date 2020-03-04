@@ -1,0 +1,125 @@
+# general
+(gen) banner: SSH-2.0-OpenSSH_3.8.1p1 Debian-8.sarge.2
+(gen) software: OpenSSH 3.8.1p1
+(gen) compatibility: OpenSSH 3.7-6.6, Dropbear SSH 0.52
+(gen) compression: enabled (zlib)
+
+# security
+(cve) CVE-2016-3115                       -- (CVSSv2: 5.5) bypass command restrictions via crafted X11 forwarding data
+(cve) CVE-2014-1692                       -- (CVSSv2: 7.5) cause DoS via triggering error condition (memory corruption)
+(cve) CVE-2012-0814                       -- (CVSSv2: 3.5) leak data via debug messages
+(cve) CVE-2011-5000                       -- (CVSSv2: 3.5) cause DoS via large value in certain length field (memory consumption)
+(cve) CVE-2010-5107                       -- (CVSSv2: 5.0) cause DoS via large number of connections (slot exhaustion)
+(cve) CVE-2010-4755                       -- (CVSSv2: 4.0) cause DoS via crafted glob expression (CPU and memory consumption)
+(cve) CVE-2010-4478                       -- (CVSSv2: 7.5) bypass authentication check via crafted values
+(cve) CVE-2008-4109                       -- (CVSSv2: 5.0) cause DoS via multiple login attempts (slot exhaustion)
+(cve) CVE-2008-1657                       -- (CVSSv2: 6.5) bypass command restrictions via modifying session file
+(cve) CVE-2008-1483                       -- (CVSSv2: 6.9) hijack forwarded X11 connections
+(cve) CVE-2007-2243                       -- (CVSSv2: 5.0) discover valid usernames through different responses
+(cve) CVE-2006-5052                       -- (CVSSv2: 5.0) discover valid usernames through different responses
+(cve) CVE-2006-5051                       -- (CVSSv2: 9.3) cause DoS or execute arbitrary code (double free)
+(cve) CVE-2006-4924                       -- (CVSSv2: 7.8) cause DoS via crafted packet (CPU consumption)
+(cve) CVE-2006-0883                       -- (CVSSv2: 5.0) cause DoS via connecting multiple times (client connection refusal)
+(cve) CVE-2006-0225                       -- (CVSSv2: 4.6) execute arbitrary code
+(cve) CVE-2005-2798                       -- (CVSSv2: 5.0) leak data about authentication credentials
+(cve) CVE-2003-1562                       -- (CVSSv2: 7.6) leak data about authentication credentials
+
+# key exchange algorithms
+(kex) diffie-hellman-group-exchange-sha1 (1024-bit) -- [fail] using small 1024-bit modulus
+                                                    `- [warn] using weak hashing algorithm
+                                                    `- [info] available since OpenSSH 2.3.0
+(kex) diffie-hellman-group1-sha1          -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [fail] disabled (in client) since OpenSSH 7.0, logjam attack
+                                          `- [warn] using small 1024-bit modulus
+                                          `- [warn] using weak hashing algorithm
+                                          `- [info] available since OpenSSH 2.3.0, Dropbear SSH 0.28
+
+# host-key algorithms
+(key) ssh-rsa                             -- [info] available since OpenSSH 2.5.0, Dropbear SSH 0.28
+
+# encryption algorithms (ciphers)
+(enc) aes128-cbc                          -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] using weak cipher mode
+                                          `- [info] available since OpenSSH 2.3.0, Dropbear SSH 0.28
+(enc) 3des-cbc                            -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] disabled (in client) since OpenSSH 7.4, unsafe algorithm
+                                          `- [warn] using weak cipher
+                                          `- [warn] using weak cipher mode
+                                          `- [warn] using small 64-bit block size
+                                          `- [info] available since OpenSSH 1.2.2, Dropbear SSH 0.28
+(enc) blowfish-cbc                        -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [fail] disabled since Dropbear SSH 0.53
+                                          `- [warn] disabled (in client) since OpenSSH 7.2, legacy algorithm
+                                          `- [warn] using weak cipher mode
+                                          `- [warn] using small 64-bit block size
+                                          `- [info] available since OpenSSH 1.2.2, Dropbear SSH 0.28
+(enc) cast128-cbc                         -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] disabled (in client) since OpenSSH 7.2, legacy algorithm
+                                          `- [warn] using weak cipher mode
+                                          `- [warn] using small 64-bit block size
+                                          `- [info] available since OpenSSH 2.1.0
+(enc) arcfour                             -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] disabled (in client) since OpenSSH 7.2, legacy algorithm
+                                          `- [warn] using weak cipher
+                                          `- [info] available since OpenSSH 2.1.0
+(enc) aes192-cbc                          -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] using weak cipher mode
+                                          `- [info] available since OpenSSH 2.3.0
+(enc) aes256-cbc                          -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] using weak cipher mode
+                                          `- [info] available since OpenSSH 2.3.0, Dropbear SSH 0.47
+(enc) rijndael-cbc@lysator.liu.se         -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] disabled (in client) since OpenSSH 7.2, legacy algorithm
+                                          `- [warn] using weak cipher mode
+                                          `- [info] available since OpenSSH 2.3.0
+(enc) aes128-ctr                          -- [info] available since OpenSSH 3.7, Dropbear SSH 0.52
+(enc) aes192-ctr                          -- [info] available since OpenSSH 3.7
+(enc) aes256-ctr                          -- [info] available since OpenSSH 3.7, Dropbear SSH 0.52
+
+# message authentication code algorithms
+(mac) hmac-md5                            -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] disabled (in client) since OpenSSH 7.2, legacy algorithm
+                                          `- [warn] using encrypt-and-MAC mode
+                                          `- [warn] using weak hashing algorithm
+                                          `- [info] available since OpenSSH 2.1.0, Dropbear SSH 0.28
+(mac) hmac-sha1                           -- [warn] using encrypt-and-MAC mode
+                                          `- [warn] using weak hashing algorithm
+                                          `- [info] available since OpenSSH 2.1.0, Dropbear SSH 0.28
+(mac) hmac-ripemd160                      -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] disabled (in client) since OpenSSH 7.2, legacy algorithm
+                                          `- [warn] using encrypt-and-MAC mode
+                                          `- [info] available since OpenSSH 2.5.0
+(mac) hmac-ripemd160@openssh.com          -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] disabled (in client) since OpenSSH 7.2, legacy algorithm
+                                          `- [warn] using encrypt-and-MAC mode
+                                          `- [info] available since OpenSSH 2.1.0
+(mac) hmac-sha1-96                        -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] disabled (in client) since OpenSSH 7.2, legacy algorithm
+                                          `- [warn] using encrypt-and-MAC mode
+                                          `- [warn] using weak hashing algorithm
+                                          `- [info] available since OpenSSH 2.5.0, Dropbear SSH 0.47
+(mac) hmac-md5-96                         -- [fail] removed (in server) since OpenSSH 6.7, unsafe algorithm
+                                          `- [warn] disabled (in client) since OpenSSH 7.2, legacy algorithm
+                                          `- [warn] using encrypt-and-MAC mode
+                                          `- [warn] using weak hashing algorithm
+                                          `- [info] available since OpenSSH 2.5.0
+
+# algorithm recommendations (for OpenSSH 3.8.1)
+(rec) -3des-cbc                           -- enc algorithm to remove 
+(rec) -aes128-cbc                         -- enc algorithm to remove 
+(rec) -aes192-cbc                         -- enc algorithm to remove 
+(rec) -aes256-cbc                         -- enc algorithm to remove 
+(rec) -arcfour                            -- enc algorithm to remove 
+(rec) -blowfish-cbc                       -- enc algorithm to remove 
+(rec) -cast128-cbc                        -- enc algorithm to remove 
+(rec) -diffie-hellman-group1-sha1         -- kex algorithm to remove 
+(rec) -hmac-md5                           -- mac algorithm to remove 
+(rec) -hmac-md5-96                        -- mac algorithm to remove 
+(rec) -hmac-ripemd160                     -- mac algorithm to remove 
+(rec) -hmac-ripemd160@openssh.com         -- mac algorithm to remove 
+(rec) -hmac-sha1-96                       -- mac algorithm to remove 
+(rec) -rijndael-cbc@lysator.liu.se        -- enc algorithm to remove 
+
+# additional info
+(nfo) For hardening guides on common OSes, please see: <https://www.ssh-audit.com/hardening_guides.html>
+
