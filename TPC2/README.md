@@ -4,6 +4,12 @@
 
 ### Pergunta 1.1
 
+* [init-app.py](./BlindSignature/init-app.py)
+* [ofusca-app.py](./BlindSignature/ofusca-app.py)
+* [blindSignature-app.py](./BlindSignature/blindSignature-app.py)
+* [desofusca-app.py](./BlindSignature/desofusca-app.py)
+* [verify-app.py](./BlindSignature/verify-app.py)
+
 ## Exercício 2 - Protocolo SSL/TLS
 
 ### Pergunta 2.1
