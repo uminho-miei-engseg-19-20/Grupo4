@@ -82,7 +82,7 @@ def main(eccPrivateKeyPath, blindM):
     with open(eccPrivateKeyPath, 'r') as fp:
         pemKey = fp.read()
     passphrase = getpass()
-    with open('componentsAssinante.dat', 'r') as fp:
+    with open('signerComponents.dat', 'r') as fp:
         initComponents = fp.readline()
     errorCode, blindSignature = eccblind.generateBlindSignature(pemKey, passphrase, blindM, initComponents)
     showResults(errorCode, blindSignature)
