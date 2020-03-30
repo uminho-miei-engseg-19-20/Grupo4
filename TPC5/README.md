@@ -119,6 +119,4 @@ Tanto o impacto como a possibilidade de ocurrência da ameaça foram avaliadas c
 
 #### Medidadas apropriadas para diminuir o risco
 
-#####
-#####
-#####
+No capítulo da política de segurança e procedimentos para a proteção de dados pessoais, a *e-shop* teve classificação **baixa** portanto apenas se aplicam as regras **A1** e **A2**. Dito isto, para mitigar o risco de segurança a organização deve rever e, se necessário, renovar a sua política de ano a ano. Para além disso, a organização/empresa deve documentar detalhamente a sua política para que os seus funcionários e, principalmente, os clientes conheçam a política e possam ter uma opinião prévia, ou seja, antes de efetivamente utilizarem a plataforma.
