@@ -66,7 +66,6 @@ Como foi apresentado no documento, antes de passar à fase da avaliação do ris
 
 O *Order and delivery of goods* consiste uma loja virtual onde o cliente tem que ser registar para conseguir usufruir do sistema. Com isto diferentes entidades vão obter e guardar diferentes dados. Dito isto, na tabela seguinte é feito o resumo do processo:
 
-
 |      Descrição do Processo      |                                               *Order and delivery of goods*                                               |
 | :-----------------------------: | :------------------------------------------------------------------------------------------------------------------------:|
 | Processar dados pessoais        | Informação do contacto (Primeiro e último nome, morada, número de telemóvel) e Informações de pagamento (cartão de credito, informação da conta bancária)                                                                                                                        |
@@ -77,4 +76,19 @@ O *Order and delivery of goods* consiste uma loja virtual onde o cliente tem que
 | Quem recebe a informação?       | Provedor do serviço de entregas (externo)                                                                                 |
 | Quem recebe a informação?       | CRM (*Customer Relation Management*) (interno)                                                                            |
 | Quem recebe a informação?       | ERP (*Enterprise Resource Planning*) (interno)                                                                            |
-| Processador de informação usado | *In-house* ou organizações externas
+| Processador de informação usado | *In-house* ou organizações externas                                                                                       |
+
+
+|      Descrição do Processo      |                                               *Order and delivery of goods*                                               |
+| :-----------------------------: | :------------------------------------------------------------------------------------------------------------------------:|
+| Processar dados pessoais        | Informação do contacto (Primeiro e último nome, morada, número de telemóvel) e Informações de pagamento (cartão de credito, informação da conta bancária)                                                                                                                        |
+| Propósito do processamento      | *Order and delivery of goods*                                                                                             |
+| De quem é a informação?         | Clientes                                                                                                                  |
+| Processamento da informação     | Sistemas de gestão de encomendas                                                                                          |
+| Quem recebe a informação?       | Provedor do serviço de pagmento (externo) 
+                                    Provedor do serviço de entregas (externo)
+                                    CRM (*Customer Relation Management*) (interno)
+                                    ERP (*Enterprise Resource Planning*) (interno)                                                                            |
+| Processador de informação usado | *In-house* ou organizações externas                                                                                       |
+
+#### sasa
