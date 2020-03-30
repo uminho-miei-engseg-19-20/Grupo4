@@ -78,17 +78,47 @@ O *Order and delivery of goods* consiste uma loja virtual onde o cliente tem que
 | Quem recebe a informação?       | ERP (*Enterprise Resource Planning*) (interno)                                                                            |
 | Processador de informação usado | *In-house* ou organizações externas                                                                                       |
 
+#### Passos da avaliação do risco
 
-|      Descrição do Processo      |                                               *Order and delivery of goods*                                               |
-| :-----------------------------: | :------------------------------------------------------------------------------------------------------------------------:|
-| Processar dados pessoais        | Informação do contacto (Primeiro e último nome, morada, número de telemóvel) e Informações de pagamento (cartão de credito, informação da conta bancária)                                                                                                                        |
-| Propósito do processamento      | *Order and delivery of goods*                                                                                             |
-| De quem é a informação?         | Clientes                                                                                                                  |
-| Processamento da informação     | Sistemas de gestão de encomendas                                                                                          |
-| Quem recebe a informação?       | Provedor do serviço de pagmento (externo) 
-                                    Provedor do serviço de entregas (externo)
-                                    CRM (*Customer Relation Management*) (interno)
-                                    ERP (*Enterprise Resource Planning*) (interno)                                                                            |
-| Processador de informação usado | *In-house* ou organizações externas                                                                                       |
+##### Avaliação do impacto
 
-#### sasa
+###### Perda de confidenciabilidade e integridade
+
+O impacto causado pela perda de confidenciabilidade e integridade na fase de processamento é considerado **Médio**, divulgação ou alteração da informação processada (incluindo informação financeira), o que pode levar a algumas inconviniências para o cliente. Por exemplo, caso sejam divulgadas as informações de cartão de crédito é necessário que o cliente reaga rapididamente (neste caso, a empresa também que ser rápida a divulgar o ataque e informar os clientes) e cancele o seu cartão de crédito.
+
+###### Perda de disponibilidade
+
+O impacto proviniente da perda de disponibilidade é considerado **baixo**, uma vez que, se o sistema ficar indisponível a informação não será processada e as encomendas e sua entrega sofrerá um atraso (que pode ser longo ou curto), de qualquer forma, não constitui uma ameaça para o cliente.
+
+##### Probabilidade de acontecimento da ameaça
+
+###### *Network* e recursos técnicos
+
+A probabilidade de acontecimento é **média**, uma vez que o processamento é feito através da internet, usando redes internas e sistemas externos também. Neste caso, assume-se que são usadas as melhores práticas no que toca ao acesso não-autorizado às informações dos clientes.
+
+###### Processos/Procedimentos relacionados com o processamento de informações
+
+A probabilidade de acontecimento é **baixa**, assumindo que:
+    - Os trabalhos e responsabilidades dos funcionários estão bem definidos de acordo com uma política aceitável.
+    - O processamento de informação está limitado às primissas da organização.
+    - São criados ficheiros *log* quando é processado qualquer tipo de informação (desta forma é possível saber quem esteve em contacto com a informação).
+
+###### Pessoas/Organizações envolvidas no processamento de informações
+
+A probabilidade de acontecimento é **média**, como nem todos os funcionários receberam instruções claras de como processar a informação e não é assegurado a total segurança no processamento da informação.
+
+###### Setor de negócio e escala do processamento
+
+A probabilidade de acontecimento é **média**, sendo uma loja virtual está sujeita a *cyber attacks* o que aumenta a probilidade da ameaça. A probabilidade da ameaça aumenta também por causa da quantidade de pessoas que são necessárias para processar a informação.
+
+Por outro lado, a probabilidade diminui porque se considera que não ocorreu nenhuma falha de segurança no passado mais recente.
+
+#### Risco
+
+Tanto o impacto como a possibilidade de ocurrência da ameaça foram avaliadas como tendo um risco **médio**, portanto, a avaliação final do risco é **médio**.
+
+#### Medidadas apropriadas para diminuir o risco
+
+#####
+#####
+#####
