@@ -74,7 +74,7 @@ O *Order and delivery of goods* consiste uma loja virtual onde o cliente tem que
 | De quem é a informação?         | Clientes                                                                                                                  |
 | Processamento da informação     | Sistemas de gestão de encomendas                                                                                          |
 | Quem recebe a informação?       | Provedor do serviço de pagmento (externo)                                                                                 |
-|           ^                     | Provedor do serviço de entregas (externo)                                                                                 |
-|           ^                     | CRM (*Customer Relation Management*) (interno)                                                                            |
-|           ^                     | ERP (*Enterprise Resource Planning*) (interno)                                                                            |
+| Quem recebe a informação?       | Provedor do serviço de entregas (externo)                                                                                 |
+| Quem recebe a informação?       | CRM (*Customer Relation Management*) (interno)                                                                            |
+| Quem recebe a informação?       | ERP (*Enterprise Resource Planning*) (interno)                                                                            |
 | Processador de informação usado | *In-house* ou organizações externas
