@@ -85,4 +85,24 @@ Um exemplo de um *CVE* que inclui esta fraqueza é o *CVE-2010-4168*. Nele é re
 
 ### Pergunta 1.3
 
+##### Vulnerabilidades de projeto
+
+###### [CWE-327: Use of a Broken or Risky Cryptographic Algorithm](https://cwe.mitre.org/data/definitions/327.html)
+
+###### [CWE-521: Weak Password Requirements](https://cwe.mitre.org/data/definitions/521.html)
+
+##### Vulnerabilidades de codificação
+
+###### [CWE-20: Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html)
+
+###### [CWE-125: Out-of-bounds Read](https://cwe.mitre.org/data/definitions/125.html)
+
+##### Vulnerabilidade operacional
+
+######
+
+######
+
 ### Pergunta 1.4
+
+As vulnerabilidades do dia-zero, ou *0-day vulnerability*, são vulnerabilidades desconhecidas ou não abordadas pelas partes interessadas em mitigá-la, nomeadamente, o vendedor do produto ou responsável pelo mesmo. Para além do facto de ser desconhecida pelos responsáveis do produto, o que distingue a vulnerabilidade de dia-zero das restantes é a ameaça que estas acarreta. Uma vez que ainda não são conhecidas ou ainda não foi encontrada uma solução para as mesmas ao contrário das outras (que já são conhecidas, divulgadas e corrigidas). Nos primeiros dias este tipo de vulnerabilidade está sujeita a ataque, que muito provavelmente terão sucesso porque a vulnerabilidade ainda não foi solucionada ou, em caso de ter sido solucionada, muitos clientes ainda não terem feito o *update* para o *patch* mais recente.
