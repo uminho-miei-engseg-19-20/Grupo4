@@ -103,6 +103,8 @@ Mais uma vez, a correção deste problema é simples. Para este caso basta passa
 
 ##### Vulnerabilidades de codificação
 
+- Introduzidas durante a programação do software, i.e., um bug com implicações de segurança.
+
 ###### [CWE-20: Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html)
 
 Esta vulnerabilidade acontece quando o programa não valida ou valida incorretamente o *input* que pode after o fluxo de dados de um programa. Isto pode permitir ao atacante modificar o *input* de forma a não ser o esperado pelo resto da aplicação. E, desta forma, leva a que partes do sistema recebam *input* não esperado, podendo resultar em alterações no fluxo de controlo ou ainda em controlo sobre determinados recursos ou execução de código maligno.
@@ -119,11 +121,21 @@ Possíveis correções passam por:
 - Verificar e assegurar que os calculos para o tamanho dos argumentos, do buffer e do *offset* estão corretos.
 - Ter cuidado em confiar nos *sentinel* para parar as leituras e *inputs* não confiáveis.
 
-##### Vulnerabilidade operacional
+##### Vulnerabilidades operacionais
 
-######
+- Causadas pelo ambiente no qual o software é executado ou pelas suas configurações.
 
-######
+###### [CWE-11: ASP.NET Misconfiguration: Creating Debug Binary](https://cwe.mitre.org/data/definitions/11.html)
+
+As aplicações ASP.NET podem ser configuradas de forma a produzir binários de *debug*. Estes dão detalhes de messagens de debug e, portanto, não devem ser utilizados em produtos finais. Se, por engano, estes binários forem lançados juntamente com a versão final do produto. Pode trazer consequências graves para o produto e muitas facilidades para os ataques.
+
+Neste caso, a correção passa apenas por não introduzir a parte de *debug* na versão final do produto (que é lançado para o mercado).
+
+###### [CWE-453: Insecure Default Variable Initialization](https://cwe.mitre.org/data/definitions/453.html)
+
+O *software* incializa as variáveis internas com valores inseguros ou menos seguros que os possíveis.
+
+Solução: verificar que todos os valores cumpre os requisitos de seguranaça desejados.
 
 ### Pergunta 1.4
 
