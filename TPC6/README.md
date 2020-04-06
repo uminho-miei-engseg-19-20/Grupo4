@@ -85,15 +85,27 @@ Um exemplo de um *CVE* que inclui esta fraqueza é o *CVE-2010-4168*. Nele é re
 
 ### Pergunta 1.3
 
-##### Vulnerabilidades de projeto
+##### Vulnerabilidades de projeto 
+
+* Introduzidas durante a fase de projeto do software.
 
 ###### [CWE-327: Use of a Broken or Risky Cryptographic Algorithm](https://cwe.mitre.org/data/definitions/327.html)
 
+O uso de algoritmos criptográficos arriscados ou *avariado* acrescenta um risco de exposição a ataques a um produto. Neste caso, se durante a fase de planeamento escolherem algoritmos *non-standard*, que podem ser fáceis de quebrar, está-se a por em causa toda a integridade, confidencialidade e disponibilidade do sistema.
+
+Neste caso, a correção é simples, por assim dizer, basta mudar o algoritmo para outro mais forte, com níveis de segurança aceitáveis.
+
 ###### [CWE-521: Weak Password Requirements](https://cwe.mitre.org/data/definitions/521.html)
+
+Neste caso, o produto não requer que os seus utilizadores usem passwords fortes sendo, desta forma, mais fácil aos atacantes atacar as contas. Como o sistema não requer passwords fortes (Minimo de 8 ou 16 carateres, letras, números e simbolos) é normal que os utilizadores não liguem tanto à segurança e criem passwords fracas, facilmente atacáveis por força bruta.
+
+Mais uma vez, a correção deste problema é simples. Para este caso basta passar a pedir passwords fortes aos utilizadores, desta forma, as contas estarão mais protegidas dos ataques.
 
 ##### Vulnerabilidades de codificação
 
 ###### [CWE-20: Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html)
+
+
 
 ###### [CWE-125: Out-of-bounds Read](https://cwe.mitre.org/data/definitions/125.html)
 
