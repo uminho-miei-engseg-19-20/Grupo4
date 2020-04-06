@@ -105,9 +105,19 @@ Mais uma vez, a correção deste problema é simples. Para este caso basta passa
 
 ###### [CWE-20: Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html)
 
+Esta vulnerabilidade acontece quando o programa não valida ou valida incorretamente o *input* que pode after o fluxo de dados de um programa. Isto pode permitir ao atacante modificar o *input* de forma a não ser o esperado pelo resto da aplicação. E, desta forma, leva a que partes do sistema recebam *input* não esperado, podendo resultar em alterações no fluxo de controlo ou ainda em controlo sobre determinados recursos ou execução de código maligno.
 
+Para corrigir este tipo de problemas já é necessário uma maior alteração de código, a solução mais simples e mais segura é considerar que todo o tipo de *input* é maligno, desta forma, todo o tipo de *input* deve ser validado.
 
 ###### [CWE-125: Out-of-bounds Read](https://cwe.mitre.org/data/definitions/125.html)
+
+A leitura *out-of-bounds* é um vulnerabilidade causada pelo facto do programa tentar ler fora do *buffer* ou antes do mesmo começar. Isto acontece quando o código lê uma certa quantidade de data e assume que exise um *sentinel* para parar a leitura, caso este esteja fora de posição ou localizado no sentido errado, o processo da leitura vai continuar podendo causar *buffer overflow* ou *segmentation fault*. As consequências mais frequentes são a perda de confidenciabilidade por parte do sistema.
+
+Possíveis correções passam por:
+
+- Usar uma linguaguem que cuide das abstrações da memória.
+- Verificar e assegurar que os calculos para o tamanho dos argumentos, do buffer e do *offset* estão corretos.
+- Ter cuidado em confiar nos *sentinel* para parar as leituras e *inputs* não confiáveis.
 
 ##### Vulnerabilidade operacional
 
