@@ -53,11 +53,59 @@ Por fim, a introdução de uma quantidade de números negativa continua a ter o 
 
 ### Pergunta 1.2 - *Root Exploit*
 
+O programa *RootExploit.c* tem o seguinte algoritmo:
+
+1. Lê uma password através da função *gets*.
+2. Compara o valor lido com a string *"csi1"*.
+3. Se for igual então a variável *pass* ficam com o valor 1.
+4. Se *pass* for 1, então tem-se permissões de *root/admin*.
+
+
+O problema está na utilização da função *gets*, uma vez que esta não verifica o tamanho do *input* e o compara com o tamanho alocado para a variável que vai armazenar esse *input*. Desta forma, dado que *buff* é um *array* de 4 posições e a última está ocupado pelo '\0', apenas se pode introduzir 3 caracteres. No entanto, se o utilizador continuar a escrever o programa continua a escrever para lá dos limites do *buff*.
+
+Desta forma, se se continuarmos a escrever no *buff* para além dos seus limites, começa-se a escrever na variável *pass* e alterara-se o seu valor.
+
 ![RootExploit](./Imagens/RootExploit.png)
+
+Aqui, o input preencheu as 3 primeiras posições do *buff*, o '\0' e por fim o último 1 escreveu na variável *pass*. Assim, apesar da password estar errada, a variável *pass* ficou a 1 e obteve-se privilégios de *root/admin*.
+
+
+
+O programa *0-simple.c* tem o seguinte algoritmo:
+
+1. A variável control é inicializada a 0.
+2. É lida uma password através da função gets.
+
+Se a variável control for diferente de 0, ganha-se.
+Da mesma forma, este programa utiliza a função gets que não é segura como já foi referido anteriormente. Assim é possível através da variável buffer corromper a memória e escrever na variável control. As variáveis são armazenadas em memória da seguinte forma:
+
+
+![simple](./Imagens/simples.png)
+
+A resposta envolve inserir um input com um tamanho 77. Os primeiros 64 caracteres servem para encher o array buffer inclusive a última posição que é do \0. Os próximos 12 caracteres (TODO: acabar). Por fim, o último caractere vai preencher a variável control e torná-la diferente de 0.
+
+
 
 ### Pergunta 1.3 - *Read Overflow*
 
+O programa *ReadOverflow.c* tem o seguinte algoritmo:
+
+1. Lê uma quantidade de caracteres através da função *fgets*.
+2. Converte o valor lido para inteiro (n) através da função *atoi*.
+3. Lê uma frase através da função *fgets*.
+4. Imprime os primeiros n caracteres presentes no *buffer*.
+5. Regressa a 1.
+
+A utilização da função *fgets* já efetua uma validação do tamanho do input introduzido, sendo lido apenas tantos caracteres quantos puderem ser armazenados no *buffer* associado.
+
+Contudo, o valor introduzido no passo 1 deve ser um inteiro, o que não é validado neste programa. A utilização da função *atoi* faz com que só seja lido os inteiros no início do input, antes de qualquer *caracter* não numérico. Assim, se for introduzida uma letra, por exemplo, o inteiro ficará com o valor 0.
+
+A introdução de um inteiro negativo para o número de caracteres fará com que sejam impressos 0 caracteres da frase.
+
 ![ReadOverflow1](./Imagens/ReadOverflow1.png)
+
+Contudo o *buffer* não é limpo e o número de caracteres indicado não é comparado com o tamanho da string inserida, há a possibilidade de ocorrência de um *read overflow*. Ou seja, consegue-se ler conteúdo de zonas do *buffer* que não foram escritas pela frase inserida, mas sim por outras anteriores.
+
 ![ReadOverflow2](./Imagens/ReadOverflow2.png)
 
 ### Pergunta 1.4
