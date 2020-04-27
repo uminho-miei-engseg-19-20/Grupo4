@@ -16,12 +16,16 @@ Dessa forma, as situações consideradas para teste do programa são:
 + Inserção de uma quantidade de números negativa;
 + Inserção de uma operação (no caso da linguagem *Python*).
 
+#### Java
+
 Relativamente ao programa escrito em *Java*, verificou-se que nos casos de inserção de valores muito elevados ou com inputs não inteiros, é lançada uma exceção. Para além disso, quando é inserida uma quantidade de números negativa, não é solicitado nenhum valor. O output gerado pelo programa *Java* para estas situações é apresentado na imagem que se segue.
 
 ![Java_array_overflow](./Imagens/Java_array_overflow.png)
 ![Java_input_overflow](./Imagens/Java_input_overflow.png)
 ![Java_letra](./Imagens/Java_letra.png)
 ![Java_negativo](./Imagens/Java_negativo.png)
+
+#### Python
 
 Quanto ao programa escrito em *Python*, continuou a verificar-se o lançamento de exceções no caso da introdução de inteiros demasiado elevados. Na introdução de uma quantidade de números negativa, ainda se constatou que simplesmente não era solicitado nenhum valor.
 
@@ -34,6 +38,8 @@ Todas estas experiências são apresentadas na imagem que se segue.
 ![Python_letra](./Imagens/Python_letra.png)
 ![Python_negativo](./Imagens/Python_negativo.png)
 ![Python_Script](./Imagens/Python_Script.png)
+
+#### C++
 
 Em último lugar, para o programa escrito em *C++*, verificou-se que após indicação de uma quantidade de números válida, caso se introduza um valor que cause overflow, as restantes solicitações de valores são impressas e o programa termina, sem introdução de mais qualquer input por parte do utilizador.
 
@@ -60,7 +66,6 @@ O programa *RootExploit.c* tem o seguinte algoritmo:
 3. Se for igual então a variável *pass* ficam com o valor 1.
 4. Se *pass* for 1, então tem-se permissões de *root/admin*.
 
-
 O problema está na utilização da função *gets*, uma vez que esta não verifica o tamanho do *input* e o compara com o tamanho alocado para a variável que vai armazenar esse *input*. Desta forma, dado que *buff* é um *array* de 4 posições e a última está ocupado pelo '\0', apenas se pode introduzir 3 caracteres. No entanto, se o utilizador continuar a escrever o programa continua a escrever para lá dos limites do *buff*.
 
 Desta forma, se se continuarmos a escrever no *buff* para além dos seus limites, começa-se a escrever na variável *pass* e alterara-se o seu valor.
@@ -68,8 +73,6 @@ Desta forma, se se continuarmos a escrever no *buff* para além dos seus limites
 ![RootExploit](./Imagens/RootExploit.png)
 
 Aqui, o input preencheu as 3 primeiras posições do *buff*, o '\0' e por fim o último 1 escreveu na variável *pass*. Assim, apesar da password estar errada, a variável *pass* ficou a 1 e obteve-se privilégios de *root/admin*.
-
-
 
 O programa *0-simple.c* tem o seguinte algoritmo:
 
@@ -79,12 +82,9 @@ O programa *0-simple.c* tem o seguinte algoritmo:
 Se a variável control for diferente de 0, ganha-se.
 Da mesma forma, este programa utiliza a função gets que não é segura como já foi referido anteriormente. Assim é possível através da variável buffer corromper a memória e escrever na variável control. As variáveis são armazenadas em memória da seguinte forma:
 
-
 ![simple](./Imagens/simples.png)
 
 A resposta envolve inserir um input com um tamanho 77. Os primeiros 64 caracteres servem para encher o array buffer inclusive a última posição que é do \0. Os próximos 12 caracteres (TODO: acabar). Por fim, o último caractere vai preencher a variável control e torná-la diferente de 0.
-
-
 
 ### Pergunta 1.3 - *Read Overflow*
 
@@ -139,3 +139,9 @@ Métodos de programação defensiva utilizados:
 - **Alocar memória** - em vez de simplesmente, não copiar o que não tinha espaço para copiar, seria uma boa prática alocar mais espaço de modo a escrever todo o que o utilizador introduziu.
 
 ### Pergunta 1.6 - Buffer overflow na Stack
+
+Métodos de programação defensiva que devem ser usados:
+
+- **Evite funções de risco** - em vez da tradicional ```strcpy``` foi utilizada a função ```strncpy```, que protege o programa contra os *buffer overflow*.
+- **Espaço alocado** - alocar o espaço suficiente (517) para conseguir copiar a string sem problemas de *buffer overflow*.
+- **Alocar memória** - se for necessário um *array* maior, alocar mais memória.

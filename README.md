@@ -17,11 +17,13 @@ A82491 - Tiago Pinheiro
 * [TPC4](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC4) - Aula 5 - 09/03
 * [TPC5](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC5) - Aula 6 - 16/03
 * [TPC6](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC6) - Aula 7 - 23/03
+* [TPC7](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC7) - Aula 9 - 20/04
+* [TPC8](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC8) - Aula 10 - 27/04
 *
 *
 
 ### Projetos:
 
 * [Projeto 1](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/projeto1) - *Managing Security Risks Inherent in the Use of Third-party Components*
-*
+* [Projeto 2](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/projeto2) -
 *
