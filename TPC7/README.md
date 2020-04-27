@@ -74,17 +74,19 @@ Desta forma, se se continuarmos a escrever no *buff* para além dos seus limites
 
 Aqui, o input preencheu as 3 primeiras posições do *buff*, o '\0' e por fim o último 1 escreveu na variável *pass*. Assim, apesar da password estar errada, a variável *pass* ficou a 1 e obteve-se privilégios de *root/admin*.
 
+---
+
 O programa *0-simple.c* tem o seguinte algoritmo:
 
-1. A variável control é inicializada a 0.
-2. É lida uma password através da função gets.
+1. A variável *control* é inicializada a 0.
+2. É lida uma *password* através da função *gets*.
 
-Se a variável control for diferente de 0, ganha-se.
-Da mesma forma, este programa utiliza a função gets que não é segura como já foi referido anteriormente. Assim é possível através da variável buffer corromper a memória e escrever na variável control. As variáveis são armazenadas em memória da seguinte forma:
+Se a variável *control* for diferente de 0, ganha-se.
+Da mesma forma, este programa utiliza a função *gets* que não é segura como já foi referido anteriormente. Assim é possível através da variável *buffer* corromper a memória e escrever na variável *control*.
 
 ![simple](./Imagens/simples.png)
 
-A resposta envolve inserir um input com um tamanho 77. Os primeiros 64 caracteres servem para encher o array buffer inclusive a última posição que é do \0. Os próximos 12 caracteres (TODO: acabar). Por fim, o último caractere vai preencher a variável control e torná-la diferente de 0.
+Inserindo um input suficientemente grande para encher o *buffer* e cobrir a memória até à variável *control* conseguimos colocar a variável diferente de 0 e ganhar.
 
 ### Pergunta 1.3 - *Read Overflow*
 
