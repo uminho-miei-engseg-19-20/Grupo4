@@ -127,7 +127,7 @@ Para manipular a variável *control* de forma a obter o resultado pretendido foi
 
 #### Resultados
 
-![Q4](./Imagens/Q4.png)
+![Q4](./Imagens/Q4.jpg)
 
 ### Pergunta 1.5 - Buffer overflow na Heap
 
