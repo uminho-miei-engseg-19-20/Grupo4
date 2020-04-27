@@ -108,7 +108,26 @@ Contudo o *buffer* não é limpo e o número de caracteres indicado não é comp
 
 ![ReadOverflow2](./Imagens/ReadOverflow2.png)
 
-### Pergunta 1.4
+### Pergunta 1.4 
+
+#### Funcionamento do programa
+
+O programa ```1-match.c``` recebe um argumento, um array de *chars*, dado pelo utilizador e aloca duas variáveis: um inteiro (```control```) e um *array* de carateres fixo de tamanho 64 (```buffer```). O ```control``` vai ser inicializado a zero, enquanto que para o *array* ```buffer``` vai ser copiada a informação dada pelo *user*.
+
+O grande problema deste programa é o uso da função ```strcpy``` para copiar algo para um *array* fixo. Isto é, como o tamanho do array é 64, se a *string* dada pelo utilizdor for maior que 64, os primeiros 64 carateres serão bem copiados para o *array* ```buffer``` mas, os restantes, vão fazer com que o *buffer* sofra um *oveflow*.
+
+#### Passos para explorar a variável
+
+Para manipular a variável *control* de forma a obter o resultado pretendido foi necessário seguir os seguintes passos:
+
+- Utilizar o *gdb* para descobrir os endereços das variáveis *control* (0x7fffffffe6fc) e *buffer* (0x7fffffffe6b0).
+- Calcular a diferença entre os endereços: 76.
+- Passar o valor pretendido da variável ```control``` do formato hexadecimal para *ASCII*: ```0x61626364``` -> ```abcd```.
+- Introduzir o input correto. Como existem 76 endereços de diferença entre as variáveis, é necessário introduzir uma string de 80 carateres para alterar completamente o valor da variável ```control``` (devido ao *overflow*) - 76 para a diferença, 4 para a variável (int - 4 bytes). Assim sendo, caso a máquina fosse *big endian*, os valores seriam anexados do maior para o mais pequeno, ou seja, para se conseguir obter os resultados pretendidos os últimos 4 carateres deviriam ser ```abcd```. Mas, como, a máquina é *little endian*, os últimos 4 carateres tem de ser ```dcba``` para obter 0x61626364.
+
+#### Resultados
+
+![Q4](./Imagens/Q4.png)
 
 ### Pergunta 1.5 - Buffer overflow na Heap
 
