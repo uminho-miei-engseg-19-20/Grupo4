@@ -123,12 +123,19 @@ Para manipular a variável *control* de forma a obter o resultado pretendido foi
 - Utilizar o *gdb* para descobrir os endereços das variáveis *control* (0x7fffffffe6fc) e *buffer* (0x7fffffffe6b0).
 - Calcular a diferença entre os endereços: 76.
 - Passar o valor pretendido da variável ```control``` do formato hexadecimal para *ASCII*: ```0x61626364``` -> ```abcd```.
-- Introduzir o input correto. Como existem 76 endereços de diferença entre as variáveis, é necessário introduzir uma string de 80 carateres para alterar completamente o valor da variável ```control``` (devido ao *overflow*) - 76 para a diferença, 4 para a variável (int - 4 bytes). Assim sendo, caso a máquina fosse *big endian*, os valores seriam anexados do maior para o mais pequeno, ou seja, para se conseguir obter os resultados pretendidos os últimos 4 carateres deviriam ser ```abcd```. Mas, como, a máquina é *little endian*, os últimos 4 carateres tem de ser ```dcba``` para obter 0x61626364.
+- Introduzir o input correto. Como existem 76 bytes entre as variáveis, é necessário introduzir uma string de 80 carateres para alterar completamente o valor da variável ```control``` (devido ao *overflow*) - 76 para a diferença, 4 para a variável (int - 4 bytes). Assim sendo, caso a máquina fosse *big endian*, os valores seriam anexados do maior para o mais pequeno, ou seja, para se conseguir obter os resultados pretendidos os últimos 4 carateres deviriam ser ```abcd```. Mas, como, a máquina é *little endian*, os últimos 4 carateres tem de ser ```dcba``` para obter 0x61626364.
 
 #### Resultados
 
 ![Q4](./Imagens/Q4.jpg)
 
 ### Pergunta 1.5 - Buffer overflow na Heap
+
+O código melhorado pode ser encontrado [aqui](https://github.com/uminho-miei-engseg-19-20/Grupo4/blob/master/TPC7/codigofonte/overflowHeap.1.c).
+
+Métodos de programação defensiva utilizados:
+
+- **Evite funções de risco** - em vez da tradicional ```strcpy``` foi utilizada a função ```strncpy```, que protege o programa contra os *buffer overflow*.
+- **Alocar memória** - em vez de simplesmente, não copiar o que não tinha espaço para copiar, seria uma boa prática alocar mais espaço de modo a escrever todo o que o utilizador introduziu.
 
 ### Pergunta 1.6 - Buffer overflow na Stack
