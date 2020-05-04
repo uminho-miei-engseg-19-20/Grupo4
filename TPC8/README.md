@@ -47,10 +47,72 @@ Como já era de esperar ao executar a função usando valores de *input* muito g
 
 ### 1.
 
+A vulnerabilidade encontrada na função ```vulneravel``` diz respeito ao argumento ```tamanho```. O código e a utilização do tipo *size_t* garante que o valor da variável tamanho está entre **0** e **MAX_SIZE**. Assim, nesse caso, a variável ```tamanho_real```, que é usada para alocar espaço para a *string* ```destino```, vai estar contida entre **0** e **MAX_SIZE-1**. Caso, a variável ```tamanho``` tenha valores **0** ou **1** vai-se verificar um *underflow*, uma vez que não irá ser possível alocar memória para a variável ```destino```, fazendo com que esta seja *NULL*, o que irá causar problemas na função ```memcpy```.
+
 ### 2.
 
+Código da função ```main``` alterado para demonstrar a vulnerabilidade:
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+const int MAX_SIZE = 2048;
+
+void vulneravel (char *origem, size_t tamanho) {
+
+    size_t tamanho_real;
+    char *destino;
+
+    if (tamanho < MAX_SIZE) {
+        tamanho_real = tamanho - 1; // Não copiar \0 de origem para destino
+        destino = (char *) malloc(tamanho_real);
+        memcpy(destino, origem, tamanho_real);
+    }
+}
+
+int main() {
+    char *origem = "Underflow";
+    vulneravel(origem, 0);
+}
+```
+
 ### 3.
+
+O programa dá *Segmentation Fault* quando tenta executar a função ```memcpy``` porque, neste caso, a variável ```destino``` é **NULL** (não é alocada memória anteriormente).
+
+![Pergunta2](./Imagens/Pergunta2.jpg)
 
 ### 4.
 
 #### 4.1
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+const int MAX_SIZE = 2048;
+
+void vulneravel (char *origem, size_t tamanho) {
+
+    size_t tamanho_real;
+    char *destino;
+
+    if (tamanho > 1 && tamanho < MAX_SIZE) {
+        tamanho_real = tamanho - 1; // Não copiar \0 de origem para destino
+        destino = (char *) malloc(tamanho_real);
+        memcpy(destino, origem, tamanho_real);
+    } else {
+        printf("Invalid input\n");
+    }
+}
+
+int main() {
+    char *origem = "Underflow";
+    vulneravel(origem, 0);
+}
+```
+
+Para mitigir as vulnerabilidade no programa as técnicas de programação defensiva utilizadas foram: verificar o *input* e validar possíveis *underflows* e *overflows*. Ou seja, com a condição extra no *if* obrigamos a que o programa aloque sempre memória e conseguia fazer sempre a operação de ```memcpy``` com sucesso.

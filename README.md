@@ -19,7 +19,7 @@ A82491 - Tiago Pinheiro
 * [TPC6](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC6) - Aula 7 - 23/03
 * [TPC7](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC7) - Aula 9 - 20/04
 * [TPC8](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC8) - Aula 10 - 27/04
-*
+* [TPC9](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC8) - Aula 11 - 04/05
 *
 
 ### Projetos:
