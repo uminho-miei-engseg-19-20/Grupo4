@@ -21,9 +21,10 @@ A82491 - Tiago Pinheiro
 * [TPC8](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC8) - Aula 10 - 27/04
 * [TPC9](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/TPC8) - Aula 11 - 04/05
 *
+*
 
 ### Projetos:
 
 * [Projeto 1](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/projeto1) - *Managing Security Risks Inherent in the Use of Third-party Components*
-* [Projeto 2](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/projeto2) -
-*
+* [Projeto 2](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/projeto2) - Ferramentas e técnicas de *Coding standards*
+* []()
