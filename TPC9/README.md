@@ -61,7 +61,7 @@ def verifyDebt(debt):
 
 ### Verificar a data de nascimento
 
-Na ```main``` é pedido que o formato seja **DD-MM-AAAA**, se este formato não for cumprido o *input* é considerado inválido. Na função verifica-se se o dia é possível, ou seja, se não é menor que zero ou que não é dia 31 de fevereiro, por exemplo. O programa também tem um requerimento que o utilizador seja maior de idade, ou seja, caso a data de nascimento não seja correspondente a uma pessoa maior de idade, o *input* é inválido.
+Na ```main``` é pedido que o formato seja **DD-MM-AAAA**, se este formato não for cumprido o *input* é considerado inválido. Na função verifica-se se o dia é possível, ou seja, se não é menor que zero ou que não é dia 31 de fevereiro, por exemplo. O programa também tem um requerimento: o utilizador tem que ser maior de idade, ou seja, caso a data de nascimento não seja correspondente a uma pessoa maior de idade, o *input* é inválido.
 
 ```
 def verifyBirth(birth):
@@ -128,7 +128,7 @@ def older18(dia,mes,ano,dt):
 
 ### Verificar o nome
 
-Na ```main``` é dito que apenas são necessários o primeiro e o último nome. Para além disso, não são permitidos qualquer tipo de carateres especiais ou números nos nomes, apenas um ```-``` no último nome.
+Na ```main``` é dito que apenas são necessários o primeiro e o último nome. Para além disso, não são permitidos qualquer tipo de carateres especiais ou números nos nomes, apenas é permitido um ```-``` no último nome.
 
 ```    
 def verifyName(name):
@@ -187,7 +187,7 @@ def verifyNIF(nif):
 
 ### Verificar NIC
 
-Apenas é verificado se todos os carateres são dígitos e se são 8.
+Verificar se todos os carateres são dígitos e se são um total de 8.
 
 ```
 def verifyNIC(nic):
@@ -221,7 +221,7 @@ def verifyNCC(ncc):
 
 ### Verificar validade do cartão de crédito
 
-Verifica-se se a data é válida e se o cartão tem validade.
+Verificar se a data é válida e se o cartão tem validade.
 
 ```
 def verifyValid(validade):
@@ -257,7 +257,7 @@ def verifyValid(validade):
 
 ### Verificar CVV
 
-Verifica-se se o código de verificação são 3 dígitos.
+Verificar se o código de verificação são 3 dígitos.
 
 ```
 def verifyCVV(cvv):
