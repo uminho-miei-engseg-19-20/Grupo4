@@ -8,7 +8,7 @@ Outra das vulnerabilidade existentes, é que não é verificado nem o tamanho do
 2. 
     * No primeiro caso, se o programa fosse chamado da seguinte maneira:```./filetype "/etc/passwd | cat /etc/shadow"``` iria ser possível aceder ás passwords do sistema, caso a execução tivesse as permissões necessárias.
 
-    * No segundo caso, 
+    * No segundo caso, em vez de pensarmos num ataque, vamos pensar numa consequência grave que o programa podia causar devido às suas vulnerabilidades. O tamanho do *buffer* que executa o comando é de 64 bits, sendo 7 deles ocupados pela *string* definida no códgio (```File : ```) assim, se a *string* introduzida pelo utilizador for maior que 57, ela será cortada. Vamos agora imaginar que o último comando da string é o seguinte: ``` | rm -rf --no-preserve-root /home/test/tess/ ```. Neste caso, se o comando executa-se por completa não haveria qualquer problema (apenas eliminaria a diretoria em questão), caso o programa trunca-se a *string* desta forma: ``` | rm -rf --no-preserve-root /``` iria ser tudo eliminado.
 
 3. Como foi dito anteriormente (num dos exemplos), se o programa tivesse permissões *setuid root* todo o sistema ficava comprometido, uma vez que, seria possível executar qualquer código na máquina. Com as permissões *root* através do programa era possível executar programas malignos, alterar comandos do sistema (como o ```ls```), ver o conteúdo de todos os ficheiros, apagar ou encriptar certos ficheiros. Ou seja, caso o programa tivesse permissões root iria comprometer a integridade, disponibilidade e confidenciabilidade do sistema.
 
