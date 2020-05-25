@@ -2,9 +2,107 @@
 
 ## Pergunta 1 - *SQL Injection*
 
+### Passo 1 - Apenas informação
+
+![Passo1](./Imagens/Passo1.png)
+
+### Passo 2 - Realização de uma *query* SQL
+
+![Passo2](./Imagens/Passo2.png)
+
+#### Solução
+
+Apenas uma simples *query* SQL.
+
+![Passo2S](./Imagens/Passo2S.png)
+
+### Passo 3 - Query de manipulação
+
+![Passo3](./Imagens/Passo3.png)
+
+#### Solução 
+
+Apenas era necessário a introdução de uma simples *query* SQL.
+
+![Passo3S](./Imagens/Passo3S.png)
+
+### Passo 4 - Query de alteração/modificação de tabelas
+
+![Passo4](./Imagens/Passo4.png)
+
+#### Solução 
+
+Mais uma vez a solução apenas a construção de uma *query* SQL.
+
+![Passo4S](./Imagens/Passo4S.png)
+
+### Passo 5 - Query de alteração de permissões
+
+![Passo5](./Imagens/Passo5.png)
+
+#### Solução 
+
+Mais uma vez a solução apenas a construção de uma *query* SQL.
+
+![Passo5S](./Imagens/Passo5S.png)
+
+### Passo 6 - Passo informativo
+
+![Passo61](./Imagens/Passo61.png)
+
+![Passo62](./Imagens/Passo62.png)
+
+### Passo 7 - Passo informativo
+
+![Passo7](./Imagens/Passo7.png)
+
+### Passo 8 - Passo informativo
+
+![Passo8](./Imagens/Passo8.png)
+
+### Passo 9 - *String* SQl *Injection* 
+
+![Passo9](./Imagens/Passo9.png)
+
+#### Descrição do passo e explicação da solução 
+
+Para fechar a apóstrofe e o *last_name* temos de introduzir o nome ```Smith``` seguido de apóstrofe. Para obter a informação sem ter as informações corretas insere-se o ```1=1```, ou seja, verdadeiro. Os apóstrofes também devem corresponder.
+
+### Passo 10 - *Number* SQl *Injection* 
+
+![Passo10](./Imagens/Passo10.png)
+
+#### Descrição do passo e explicação da solução 
+
+Neste caso, não existe um problema obvio com as aspas ou apóstrofes. Na segunda variável usa-se o mesmo truque que no passo anterior, ou seja, ```OR 1=1```. Neste caso, os números postos no primeiro campo ou antes do **OR** não eram importantes. A solução final está na imagem em cima.
+
+### Passo 11 - *Compromising confidentiality with String* SQl *Injection* 
+
+![Passo11](./Imagens/Passo11.png)
+
+#### Descrição do passo e explicação da solução 
+
+Mais uma vez, a repitação do processo das queries anteriores, desta feita, era um pouco mais difícil lidar com as aspas e apóstrofes. A solução final está na imagem em cima.
+
+### Passo 12 - *Compromising Integrity* com *Query chaining* 
+
+![Passo12](./Imagens/Passo12.png)
+
+#### Solução 
+
+- Employee Name - ```Smith```
+- Authentication TAN - ```3SL99A'; UPDATE employees SET salary=100000 WHERE last_name='Smith```
+
+
+### Passo 13 - *Compromising Availability* 
+
+![Passo13](./Imagens/Passo13.png)
+
+#### Solução 
+
+Neste caso, a solução neste caso era apagar como complemento a tabela. Usando o que foi visto no passo informativo número 6, a solução era a seguinte: ```'; DROP TABLE access_log;--```.
 
 ## Pergunta 2 - *XSS*
-
 
 ## Pergunta 3 - *Password Reset*
 
