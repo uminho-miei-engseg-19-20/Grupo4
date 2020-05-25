@@ -104,6 +104,83 @@ Neste caso, a solução neste caso era apagar como complemento a tabela. Usando 
 
 ## Pergunta 2 - *XSS*
 
+### Passo 1 - Passo informativo
+
+![Passo1XSS](./Imagens/Passo1XSS.png)
+
+### Passo 2 - *Cookies*
+
+![Passo2XSS](./Imagens/Passo2XSS.png)
+
+#### Solução
+
+A resposta é **YES**. Para conseguir chegar a esta conclusão basta ir a cada *tab*, abrir o modo *developer*, ir a *Console* (o *browser* é o *Firefox*) e executar a linha dada: ```alert(document.cookie)``` e verificar ambos os *outputs*, que são iguais nas duas páginas.
+
+### Passo 3 - Passo informativo
+
+![Passo3XSS](./Imagens/Passo3XSS.png)
+
+### Passo 4 - Passo informativo
+
+![Passo4XSS](./Imagens/Passo4XSS.png)
+
+### Passo 5 - Passo informativo
+
+![Passo5XSS](./Imagens/Passo5XSS.png)
+
+### Passo 6 - Passo informativo
+
+![Passo6XSS](./Imagens/Passo6XSS.png)
+
+### Passo 7 - *Reflected XSS*
+
+![Passo7XSS](./Imagens/Passo7XSS.png)
+
+#### Solução
+
+O campo vulnerável era o ```Enter your credit card number:``` e, nesse campo, foi introduzido o seguinte código: ```<script>alert()</script>```, desta forma, aparece um alerta no ecrã (vazio).
+
+### Passo 8 - Passo informativo
+
+![Passo8XSS](./Imagens/Passo8XSS.png)
+
+### Passo 9 - Passo informativo
+
+![Passo9XSS](./Imagens/Passo9XSS.png)
+
+### Passo 10 - *Identify potential for DOM-Based XSS*
+
+![Passo10XSS](./Imagens/Passo10XSS.png)
+**Solution 4**
+#### Solução
+
+- Primeiro abrir o *development tools* e ir ao separador *Debugger*
+- Encontrar o ficheiro das *routes* (```goatApp/View/GoatRouter.js```)
+- Inserir ```start.mvc#test/``` na caixa de resposta
+
+### Passo 11 - *DOM-Based XSS*
+
+![Passo11XSS](./Imagens/Passo11XSS.png)
+
+#### Solução
+
+- Noutro separador abrir o URL ```localhost:8080/WebGoat/start.mvc#test/<script>webgoat.customjs.phoneHome()<%2Fscript>```
+- Abrir o *development tools*
+- Ir ao separador *console*
+- Copiar e colar na caixa de resposta o valor encontrado na consola
+
+### Passo 12 - 
+
+![Passo12XSS](./Imagens/Passo12XSS.png)
+
+#### Soluções
+
+- 1 - **Solution 4**
+- 2 - **Solution 3**
+- 3 - **Solution 1**
+- 4 - **Solution 2**
+- 5 - **Solution 4**
+
 ## Pergunta 3 - *Password Reset*
 
 Utilizando o *WebGoat* a lição A2 *Broken Authentication > Password Reset* serve como forma de testar ataques a *Password Reset*.
