@@ -5,4 +5,5 @@ function get_appid() {
   return $GLOBALS['APPLICATION_ID'];
 }
 
+//echo get_appid();
 ?>
