@@ -1,4 +1,10 @@
 <?php
+/*
+import hashlib            # hash SHA256
+import logging.config     # debug
+from zeep import Client   # zeep para SOAP
+from zeep.transports import Transport
+*/
 
 function debug(){
     // completar
