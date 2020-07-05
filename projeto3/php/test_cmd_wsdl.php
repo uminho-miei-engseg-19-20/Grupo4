@@ -25,7 +25,7 @@ function main($number, $argm) {
     }
 }
 
-function handle_single($argumento){
+function handle_single($argumento) {
     switch ($argumento) {
         case '-h':
             echo "usage: test_cmd_wsdl.php [-h] [-V]\r\n";
@@ -539,7 +539,7 @@ function handle_all($number,$argumentos){
             test_help();
             break;
         case 'TestAll':
-            // just copy above...do later
+            test_all();
             break;
         default:
             echo "Use -h for usage :\r\n";
@@ -549,7 +549,12 @@ function handle_all($number,$argumentos){
     }
 }
 
-function test_all(){
-    // completar
+function test_all() {
+    $line = readline("Introduza o OTP recebido no seu dispositivo: ");
+    if (its_otp($line)) {
+
+    } else {
+        echo "OTP format not valid. Try Again.\r\n";
+    }
 }
 ?>
