@@ -2,7 +2,7 @@
 
 function its_user($numero) {
     $n = str_split($numero);
-    
+
     if (count($n) != 14) {
         return 0;
     } elseif ($n[0] == "+" and is_numeric($n[1]) and is_numeric($n[2]) and is_numeric($n[3]) and
@@ -34,16 +34,39 @@ function its_otp($numero) {
         return 0;
     }
 
-    for($i = 0; $i < 6; $i++) {
+    for ($i = 0; $i < 6; $i++) {
         if (!is_numeric($n[$i])) {
             return 0;
         }
-    }    
+    }
 
     return 1;
 }
 
 function its_processId($numero) {
+    $n = str_split($numero);
+
+    if (count($n) != 36) {
+        return 0;
+    }
+
+    for ($i = 0; $i < 36; $i++) {
+
+        if (($i == 8) or ($i == 13) or ($i == 18) or ($i == 23)) {
+            if ($n[$i] != '-') {
+                return 0;
+            }
+        } elseif (!is_numeric($n[$i])) {
+            if (ctype_alpha($n[$i])) {
+                if (!ctype_lower($n[$i])) {
+                    return 0;
+                }
+            } else {
+                return 0;
+            }
+        }
+    }
+
     return 1;
 }
 
