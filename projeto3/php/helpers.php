@@ -4,6 +4,18 @@ function its_user($numero) {
     return 1;
 }
 
+function its_pin($numero) {
+    return 1;
+}
+
+function its_otp($numero) {
+    return 1;
+}
+
+function its_processId($numero) {
+    return 1;
+}
+
 function gc_help() {
     echo "usage: test_cmd_wsdl.php GetCertificate [-h] [-applicationId APPLICATIONID]\r\n";
     echo "                                       [-prod] [-D]\r\n";

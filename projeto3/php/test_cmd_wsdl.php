@@ -81,7 +81,7 @@ function handle_all($number,$argumentos){
             if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 gc_help();
                 break;
-            } 
+            }
 
             if (($argumentos[2] == "-prod") and ($number == 4)) {
                 if (its_user($argumentos[3])) {
@@ -116,83 +116,238 @@ function handle_all($number,$argumentos){
                     echo "Correct format it's '+351 NNNNNNNNN'\r\n";
                     break;
                 }
+            }
+
+            if (its_user($argumentos[2]) and ($number == 3)) {
+                echo "Chamei a função com user\r\n";
+                // chamar a função com prod false e appId default
+            } else {
+                echo "Wrong user\r\n";
+                echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                break;
             }
 
             echo "Wrong arguments\r\n";
             gc_help();
             break;
         case 'GetCertificate':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
-                gc_help();
-                break;
-            } 
-
-            if (($argumentos[2] == "-prod") and ($number == 4)) {
-                if (its_user($argumentos[3])) {
-                    if ($number == 4) {
-                        echo "Chamei a função com prod\r\n";
-                        // Chamar a função prod==1
-                        break;
-                    } else {
-                        echo "Wrong number of arguments, check -h for help.\r\n";
-                        break;
-                    }
-                } else {
-                    echo "Wrong user\r\n";
-                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                    break;
-                }
-            }
-
-            if (($argumentos[2] == "-applicationId") and ($number == 5)) {
-                if (its_user($argumentos[4])) {
-                    if ($number == 5) {
-                        echo "Chamei a função com applicationId\r\n";
-                        // talvez verificar o agumentos[3] primeiro
-                        // Chamar a função argumentos[3]
-                        break;
-                    } else {
-                        echo "Wrong number of arguments, check -h for help.\r\n";
-                        break;
-                    }
-                } else {
-                    echo "Wrong user\r\n";
-                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                    break;
-                }
-            }
-
-            echo "Wrong arguments\r\n";
-            gc_help();
+            // just copy above...do later
+            break;
         case 'ms':
             if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 ms_help();
+                break;
+            } 
+
+            if (($argumentos[2] == "-prod") and ($number == 5)) {
+                if (its_user($argumentos[3])) {
+                    if (its_pin($agumentos[4])) {
+                        if ($number == 5) {
+                            echo "Chamei a função com prod\r\n";
+                            // Chamar a função prod==1
+                            break;
+                        } else {
+                            echo "Wrong number of arguments, check -h for help.\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong pin format\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
             }
+
+            if (($argumentos[2] == "-applicationId") and ($number == 6)) {
+                if (its_user($argumentos[4])) {
+                    if (its_pin($agumentos[5])) {
+                        if ($number == 6) {
+                            echo "Chamei a função com applicationId\r\n";
+                            // talvez verificar o agumentos[3] primeiro
+                            // Chamar a função argumentos[3]
+                            break;
+                        } else {
+                            echo "Wrong number of arguments, check -h for help.\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong pin format\r\n";
+                        break;
+                    }    
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            }
+
+            if (its_user($argumentos[2]) and ($number == 4)) {
+                if (its_pin($agumentos[3])) {
+                    echo "Chamei a função com user\r\n";
+                    // chamar a função com prod false e appId default
+                    break;
+                } else {
+                    echo "Wrong pin format\r\n";
+                    break;
+                }    
+            } else {
+                echo "Wrong user\r\n";
+                echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                break;
+            }
+
+            echo "Wrong arguments\r\n";
+            ms_help();
             break;
         case 'CCMovelSign':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
-                ms_help();
-            }
+            // just copy above...do later
             break;
         case 'mms':
             if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 mms_help();
+                break;
+            } 
+
+            if (($argumentos[2] == "-prod") and ($number == 5)) {
+                if (its_user($argumentos[3])) {
+                    if (its_pin($agumentos[4])) {
+                        if ($number == 5) {
+                            echo "Chamei a função com prod\r\n";
+                            // Chamar a função prod==1
+                            break;
+                        } else {
+                            echo "Wrong number of arguments, check -h for help.\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong pin format\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
             }
+
+            if (($argumentos[2] == "-applicationId") and ($number == 6)) {
+                if (its_user($argumentos[4])) {
+                    if (its_pin($agumentos[5])) {
+                        if ($number == 6) {
+                            echo "Chamei a função com applicationId\r\n";
+                            // talvez verificar o agumentos[3] primeiro
+                            // Chamar a função argumentos[3]
+                            break;
+                        } else {
+                            echo "Wrong number of arguments, check -h for help.\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong pin format\r\n";
+                        break;
+                    }    
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            }
+
+            if (its_user($argumentos[2]) and ($number == 4)) {
+                if (its_pin($agumentos[3])) {
+                    echo "Chamei a função com user\r\n";
+                    // chamar a função com prod false e appId default
+                    break;
+                } else {
+                    echo "Wrong pin format\r\n";
+                    break;
+                }    
+            } else {
+                echo "Wrong user\r\n";
+                echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                break;
+            }
+
+            echo "Wrong arguments\r\n";
+            mms_help();
             break;
         case 'CCMovelMultipleSign':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
-                mms_help();
-            }
+            // just copy above...do later
             break;
         case 'otp':
             if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 otp_help();
+                break;
+            } 
+
+            if (($argumentos[2] == "-prod") and ($number == 5)) {
+                if (its_otp($argumentos[3])) {
+                    if (its_processId($agumentos[4])) {
+                        if ($number == 5) {
+                            echo "Chamei a função com prod\r\n";
+                            // Chamar a função prod==1
+                            break;
+                        } else {
+                            echo "Wrong number of arguments, check -h for help.\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong pin format\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
             }
+
+            if (($argumentos[2] == "-applicationId") and ($number == 6)) {
+                if (its_otp($argumentos[4])) {
+                    if (its_processId($agumentos[5])) {
+                        if ($number == 6) {
+                            echo "Chamei a função com applicationId\r\n";
+                            // talvez verificar o agumentos[3] primeiro
+                            // Chamar a função argumentos[3]
+                            break;
+                        } else {
+                            echo "Wrong number of arguments, check -h for help.\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong pin format\r\n";
+                        break;
+                    }    
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            }
+
+            if (its_otp($argumentos[2]) and ($number == 4)) {
+                if (its_processId($agumentos[3])) {
+                    echo "Chamei a função com otp\r\n";
+                    // chamar a função com prod false e appId default
+                    break;
+                } else {
+                    echo "Wrong pin format\r\n";
+                    break;
+                }    
+            } else {
+                echo "Wrong user\r\n";
+                echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                break;
+            }
+
+            echo "Wrong arguments\r\n";
+            otp_help();
             break;
         case 'ValidateOtp':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
-                otp_help();
-            }
+            // just copy above...do later
             break;
         case 'test':
             if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
@@ -200,10 +355,7 @@ function handle_all($number,$argumentos){
             }
             break;
         case 'TestAll':
-            echo $number;
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
-                test_help();
-            }
+            // just copy above...do later
             break;
         default:
             echo "Use -h for usage :\r\n";
