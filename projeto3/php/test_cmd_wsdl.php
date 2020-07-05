@@ -240,9 +240,20 @@ function handle_all($number,$argumentos){
             if (($argumentos[2] == "-prod") and ($number == 5)) {
                 if (its_user($argumentos[3])) {
                     if (its_pin($argumentos[4])) {
-                        if ($number == 5) {
-                            echo "Chamei a função com prod\r\n";
-                            // Chamar a função prod==1
+                        if ($number == 5) {   
+                            $client = getClient(1);
+
+                            $args = [
+                                "applicationId" => $GLOBALS['APPLICATION_ID'],
+                                "docName" => NULL,
+                                "hash" => NULL,
+                                "pin" => $argumentos[4],
+                                "userId" => $argumentos[3],
+                            ];
+
+                            $result = ccmovelsign($client, $args, "SHA256");
+                            $result = json_encode($result);
+                            echo "$result\r\n";
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
