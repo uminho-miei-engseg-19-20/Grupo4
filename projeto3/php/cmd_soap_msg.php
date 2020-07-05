@@ -20,7 +20,7 @@ function getClient($env = 0){
     return $client;
 }
 
-function hashPrefix($ashtype, $hash){
+function hashPrefix($hashtype, $hash){
     $prefix = [
         "SHA256" => b'010\r\x06\t`\x86H\x01e\x03\x04\x02\x01\x05\x00\x04',
     ];
