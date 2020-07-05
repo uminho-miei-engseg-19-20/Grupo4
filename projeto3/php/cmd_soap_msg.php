@@ -38,90 +38,90 @@ function hashPrefix($ashtype, $hash){
     */
     array_push($prefix["hashtype"],hash);
 
-    return prefix["hashtype"] ;
+    return $prefix["hashtype"];
 }
 
 function getCertificate($client, $args){
 
-    request_data = [
-        "applicationId" = utf8_encode(args["applicationId"]),
-        "userId" = args["user"],
+    $request_data = [
+        "ApplicationId" => utf8_encode(args["applicationId"]),
+        "UserId" => $args["user"],
     ];
 
-    return $client->__soapCall("GetCertificate",array($request_data);
+    return $client->__soapCall("GetCertificate",array($request_data));
 }
 
-function ccmovelsign(client, args, hashtype = "SHA256"){
+function ccmovelsign($client, $args, $hashtype = "SHA256"){
     
-    if (args["docName"] == NULL){
-        args["docName"] = "docname teste";
+    if ($args["docName"] == NULL){
+        $args["docName"] = "docname teste";
     }
-    if (args["hash"] == NULL){
-        args["hash"] = hashlib.sha256(b"Nobody inspects the spammish repetition").digest();
+    if ($args["hash"] == NULL){
+        $args["hash"] = $hashlib.sha256(b"Nobody inspects the spammish repetition"); //digest
     }
-    args["hash"] = hashPrefix(hashtype, args["hash"]);
+    $args["hash"] = hashPrefix(hashtype, $args["hash"]);
 
-    request = [
-        "ApplicationId" = utf8_encode(args["applicationId"]), // python
-        "DocName" = args["docName"],
-        "Hash" = args["hash"],
-        "Pin" = args["pin"],
-        "UserId" = args["user"],
+    $request = [
+        "ApplicationId" => utf8_encode($args["applicationId"]), // python
+        "DocName" => $args["docName"],
+        "Hash" => $args["hash"],
+        "Pin" => $args["pin"],
+        "UserId" => $args["user"],
     ];
     
-    request_data = [
-        "request" = request;
+    $request_data = [
+        "request" => $request,
     ];
 
-    return $client->__soapCall("CCMovelSign",array($request_data);
+    return $client->__soapCall("CCMovelSign",array($request_data));
 }
 
-function ccmovelmultiplesign(client, args){
+function ccmovelmultiplesign($client, $args){
 
-    request = [
-        "ApplicationId": args["applicationId"].encode("UTF-8"),
-        "Pin": args["pin"],
-        "UserId": args["user"],
+    $request = [
+        "ApplicationId" => $args["applicationId"].encode("UTF-8"),
+        "Pin" => $args["pin"],
+        "UserId" => $args["user"],
     ];
 
-    doc_1 = [
-        "Hash" = hash("sha256", b"Nobody inspects the spammish repetition"),
-        "Name" = "docname teste1", 
-        "id"   = "1234",
+    $doc_1 = [
+        "Hash" => hash("sha256", b"Nobody inspects the spammish repetition"),
+        "Name" => "docname teste1", 
+        "id"   => "1234",
     ];
 
-    doc_2 = [
-        "Hash" = hash("sha256", b"Always inspect the spammish repetition"),
-        "Name" = "docname teste2", 
-        "id"   = "1235",
+    $doc_2 = [
+        "Hash" => hash("sha256", b"Always inspect the spammish repetition"),
+        "Name" => "docname teste2", 
+        "id"   => "1235",
     ];
 
-    HashStructure = [
-        "doc_1" = doc_1,
-        "doc_2" = doc_2,
+    $HashStructure = [
+        "doc_1" => $doc_1,
+        "doc_2" => $doc_2,
     ];
 
-    documents = [
-        "HashStructure" = HashStructure,
+    $documents = [
+        "HashStructure" => $HashStructure,
     ];
 
-    request_data = [
-        "request" = request;
-        "documents" = documents
+    $request_data = [
+        "request" => $request,
+        "documents" => $documents,
     ];
 
-    return $client->__soapCall("CCMovelMultipleSign",array($request_data);
+    return $client->__soapCall("CCMovelMultipleSign",array($request_data));
 }
 
-function validate_otp(client, args){
+function validate_otp($client, $args){
 
-    request_data = [
-        "applicationId" = args["applicationId"].encode("UTF-8"),
-        "processId" = args["ProcessId"],
-        "code" = args["OTP"],
+    $request_data = [
+        "applicationId" => $args["applicationId"].encode("UTF-8"),
+        "processId" => $args["ProcessId"],
+        "code" => $args["OTP"],
     ];
 
-    return $client->__soapCall("ValidateOtp",array($request_data);
+    return $client->__soapCall("ValidateOtp",array($request_data));
 }
 
 ?>
