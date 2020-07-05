@@ -1,14 +1,45 @@
 <?php
 
 function its_user($numero) {
-    return 1;
+    $n = str_split($numero);
+    
+    if (count($n) != 14) {
+        return 0;
+    } elseif ($n[0] == "+" and is_numeric($n[1]) and is_numeric($n[2]) and is_numeric($n[3]) and
+              $n[4] == " " and is_numeric($n[5]) and is_numeric($n[6]) and is_numeric($n[7]) and
+                is_numeric($n[8]) and is_numeric($n[9]) and is_numeric($n[10]) and 
+                is_numeric($n[11]) and is_numeric($n[12]) and is_numeric($n[13])) {
+                    return 1;
+    } else {
+        return 0;
+    }
 }
 
 function its_pin($numero) {
+    $n = str_split($numero);
+
+    for($i = 0; $i < count($n); $i++) {
+        if (!is_numeric($n[$i])) {
+            return 0;
+        }
+    }
+
     return 1;
 }
 
 function its_otp($numero) {
+    $n = str_split($numero);
+
+    if (count($n) != 6) {
+        return 0;
+    }
+
+    for($i = 0; $i < 6; $i++) {
+        if (!is_numeric($n[$i])) {
+            return 0;
+        }
+    }    
+
     return 1;
 }
 
