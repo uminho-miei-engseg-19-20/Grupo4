@@ -94,8 +94,8 @@ function handle_all($number,$argumentos){
                         ];
 
                         $result = getCertificate($client, $args);
-                        $result = json_encode($result);
-                        echo "$result\r\n";
+                        $result = json_decode(json_encode($result),true);
+                        print_r($result);
                         break;
                     } else {
                         echo "Wrong number of arguments, check -h for help.\r\n";
@@ -119,8 +119,8 @@ function handle_all($number,$argumentos){
                         ];
 
                         $result = getCertificate($client, $args);
-                        $result = json_encode($result);
-                        echo "$result\r\n";
+                        $result = json_decode(json_encode($result),true);
+                        print_r($result);
                         break;
                     } else {
                         echo "Wrong number of arguments, check -h for help.\r\n";
@@ -142,8 +142,8 @@ function handle_all($number,$argumentos){
                 ];
 
                 $result = getCertificate($client, $args);
-                $result = json_encode($result);
-                echo "$result\r\n";
+                $result = json_decode(json_encode($result),true);
+                print_r($result);
                 break;
             } else {
                 echo "Wrong user\r\n";
@@ -171,8 +171,8 @@ function handle_all($number,$argumentos){
                         ];
 
                         $result = getCertificate($client, $args);
-                        $result = json_encode($result);
-                        echo "$result\r\n";
+                        $result = json_decode(json_encode($result),true);
+                        print_r($result);
                         break;
                     } else {
                         echo "Wrong number of arguments, check -h for help.\r\n";
@@ -196,8 +196,8 @@ function handle_all($number,$argumentos){
                         ];
 
                         $result = getCertificate($client, $args);
-                        $result = json_encode($result);
-                        echo "$result\r\n";
+                        $result = json_decode(json_encode($result),true);
+                        print_r($result);
                         break;
                     } else {
                         echo "Wrong number of arguments, check -h for help.\r\n";
@@ -219,8 +219,8 @@ function handle_all($number,$argumentos){
                 ];
 
                 $result = getCertificate($client, $args);
-                $result = json_encode($result);
-                echo "$result\r\n";
+                $result = json_decode(json_encode($result),true);
+                print_r($result);
                 break;
             } else {
                 echo "Wrong user\r\n";
@@ -252,8 +252,8 @@ function handle_all($number,$argumentos){
                             ];
 
                             $result = ccmovelsign($client, $args, "SHA256");
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -285,8 +285,8 @@ function handle_all($number,$argumentos){
                             ];
 
                             $result = ccmovelsign($client, $args, "SHA256");
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -316,8 +316,8 @@ function handle_all($number,$argumentos){
                     ];
 
                     $result = ccmovelsign($client, $args, "SHA256");
-                    $result = json_encode($result);
-                    echo "\r\n$result\r\n\r\n";
+                    $result = json_decode(json_encode($result),true);
+                    print_r($result);
                     break;
                 } else {
                     echo "Wrong pin format\r\n";
@@ -353,8 +353,8 @@ function handle_all($number,$argumentos){
                             ];
 
                             $result = ccmovelsign($client, $args, "SHA256");
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -386,8 +386,8 @@ function handle_all($number,$argumentos){
                             ];
 
                             $result = ccmovelsign($client, $args, "SHA256");
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -417,8 +417,8 @@ function handle_all($number,$argumentos){
                     ];
 
                     $result = ccmovelsign($client, $args, "SHA256");
-                    $result = json_encode($result);
-                    echo "\r\n$result\r\n\r\n";
+                    $result = json_decode(json_encode($result),true);
+                    print_r($result);
                     break;
                 } else {
                     echo "Wrong pin format\r\n";
@@ -452,8 +452,8 @@ function handle_all($number,$argumentos){
                             ];
 
                             $result = ccmovelmultiplesign($client, $args);
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -483,8 +483,8 @@ function handle_all($number,$argumentos){
                             ];
 
                             $result = ccmovelmultiplesign($client, $args);
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -512,8 +512,8 @@ function handle_all($number,$argumentos){
                     ];
 
                     $result = ccmovelmultiplesign($client, $args);
-                    $result = json_encode($result);
-                    echo "\r\n$result\r\n\r\n";
+                    $result = json_decode(json_encode($result),true);
+                    print_r($result);
                     break;
                 } else {
                     echo "Wrong pin format\r\n";
@@ -547,8 +547,8 @@ function handle_all($number,$argumentos){
                             ];
 
                             $result = ccmovelmultiplesign($client, $args);
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -578,8 +578,8 @@ function handle_all($number,$argumentos){
                             ];
 
                             $result = ccmovelmultiplesign($client, $args);
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -607,8 +607,8 @@ function handle_all($number,$argumentos){
                     ];
 
                     $result = ccmovelmultiplesign($client, $args);
-                    $result = json_encode($result);
-                    echo "\r\n$result\r\n\r\n";
+                    $result = json_decode(json_encode($result),true);
+                    print_r($result);
                     break;
                 } else {
                     echo "Wrong pin format\r\n";
@@ -642,8 +642,8 @@ function handle_all($number,$argumentos){
                             ];
         
                             $result = validate_otp($client, $args);
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -673,8 +673,8 @@ function handle_all($number,$argumentos){
                             ];
         
                             $result = validate_otp($client, $args);
-                            $result = json_encode($result);
-                            echo "\r\n$result\r\n\r\n";
+                            $result = json_decode(json_encode($result),true);
+                            print_r($result);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -702,8 +702,8 @@ function handle_all($number,$argumentos){
                     ];
 
                     $result = validate_otp($client, $args);
-                    $result = json_encode($result);
-                    echo "\r\n$result\r\n\r\n";
+                    $result = json_decode(json_encode($result),true);
+                    print_r($result);
                     break;
                 } else {
                     echo "Wrong processId format\r\n";
