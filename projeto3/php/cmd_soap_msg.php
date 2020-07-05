@@ -25,9 +25,7 @@ function hashPrefix($hashtype, $hash){
         "SHA256" => b'010\r\x06\t`\x86H\x01e\x03\x04\x02\x01\x05\x00\x04',
     ];
 
-    array_push($prefix["hashtype"],$hash);
-
-    return $prefix["hashtype"];
+    return $prefix["hashtype"].$hash;
 }
 
 function getCertificate($client, $args){
