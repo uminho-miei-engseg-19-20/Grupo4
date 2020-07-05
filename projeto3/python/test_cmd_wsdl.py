@@ -80,6 +80,9 @@ def main():
     if len(sys.argv) > 1:
         if args.debug:
             cmd_soap_msg.debug()
+        print("\n\n")
+        print(args.prod)
+        print("\n\n")
         client = cmd_soap_msg.getclient(args.prod)
         print(args.func(client, args))
     else:

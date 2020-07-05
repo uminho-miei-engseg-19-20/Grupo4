@@ -29,7 +29,7 @@ function getClient($env = 0, $timeout = 10){
     return $client;
 }
 
-function hashPrefix(hashtype, hash){
+function hashPrefix($ashtype, $hash){
     /*
     prefix = {
         "SHA256" = bytes(bytearray([0x30, 0x31, 0x30, 0x0d, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 
@@ -41,7 +41,7 @@ function hashPrefix(hashtype, hash){
     return prefix["hashtype"] ;
 }
 
-function getCertificate(client, args){
+function getCertificate($client, $args){
 
     request_data = [
         "applicationId" = utf8_encode(args["applicationId"]),
