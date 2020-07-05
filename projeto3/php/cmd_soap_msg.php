@@ -21,12 +21,10 @@ function getClient($env = 0){
 }
 
 function hashPrefix($ashtype, $hash){
-    /*
-    prefix = {
-        "SHA256" = bytes(bytearray([0x30, 0x31, 0x30, 0x0d, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 
-                                    0x65, 0x03, 0x04, 0x02, 0x01, 0x05, 0x00, 0x04, 0x20])),
-    };
-    */
+    $prefix = [
+        "SHA256" => b'010\r\x06\t`\x86H\x01e\x03\x04\x02\x01\x05\x00\x04',
+    ];
+
     array_push($prefix["hashtype"],$hash);
 
     return $prefix["hashtype"];
@@ -48,7 +46,7 @@ function ccmovelsign($client, $args, $hashtype = "SHA256"){
         $args["docName"] = "docname teste";
     }
     if ($args["hash"] == NULL){
-        $args["hash"] = $hashlib.sha256(b"Nobody inspects the spammish repetition"); //digest
+        $args["hash"] = hash("sha256", b"Nobody inspects the spammish repetition"); //openssl_digest(hash("sha256", b"Nobody inspects the spammish repetition"), "sha256");
     }
     $args["hash"] = hashPrefix(hashtype, $args["hash"]);
 
