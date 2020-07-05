@@ -333,7 +333,105 @@ function handle_all($number,$argumentos){
             ms_help();
             break;
         case 'CCMovelSign':
-            // just copy above...do later
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
+                ms_help();
+                break;
+            } 
+
+            if (($argumentos[2] == "-prod") and ($number == 5)) {
+                if (its_user($argumentos[3])) {
+                    if (its_pin($argumentos[4])) {
+                        if ($number == 5) {   
+                            $client = getClient(1);
+
+                            $args = [
+                                "applicationId" => $GLOBALS['APPLICATION_ID'],
+                                "docName" => NULL,
+                                "hash" => NULL,
+                                "pin" => $argumentos[4],
+                                "userId" => $argumentos[3],
+                            ];
+
+                            $result = ccmovelsign($client, $args, "SHA256");
+                            $result = json_encode($result);
+                            echo "\r\n$result\r\n\r\n";
+                            break;
+                        } else {
+                            echo "Wrong number of arguments, check -h for help.\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong pin format\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            }
+
+            if (($argumentos[2] == "-applicationId") and ($number == 6)) {
+                if (its_user($argumentos[4])) {
+                    if (its_pin($argumentos[5])) {
+                        if ($number == 6) {
+                            $client = getClient(0);
+
+                            $args = [
+                                "applicationId" => $argumentos[3],
+                                "docName" => NULL,
+                                "hash" => NULL,
+                                "pin" => $argumentos[5],
+                                "userId" => $argumentos[4],
+                            ];
+
+                            $result = ccmovelsign($client, $args, "SHA256");
+                            $result = json_encode($result);
+                            echo "\r\n$result\r\n\r\n";
+                            break;
+                        } else {
+                            echo "Wrong number of arguments, check -h for help.\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong pin format\r\n";
+                        break;
+                    }    
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            }
+
+            if (its_user($argumentos[2]) and ($number == 4)) {
+                if (its_pin($argumentos[3])) {
+                    $client = getClient(0);
+
+                    $args = [
+                        "applicationId" => $GLOBALS['APPLICATION_ID'],
+                        "docName" => NULL,
+                        "hash" => NULL,
+                        "pin" => $argumentos[3],
+                        "userId" => $argumentos[2],
+                    ];
+
+                    $result = ccmovelsign($client, $args, "SHA256");
+                    $result = json_encode($result);
+                    echo "\r\n$result\r\n\r\n";
+                    break;
+                } else {
+                    echo "Wrong pin format\r\n";
+                    break;
+                }    
+            } else {
+                echo "Wrong user\r\n";
+                echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                break;
+            }
+
+            echo "Wrong arguments\r\n";
+            ms_help();
             break;
         case 'mms':
             if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
