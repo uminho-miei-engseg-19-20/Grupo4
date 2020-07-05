@@ -25,7 +25,7 @@ function hashPrefix($hashtype, $hash){
         "SHA256" => b'010\r\x06\t`\x86H\x01e\x03\x04\x02\x01\x05\x00\x04',
     ];
 
-    return $prefix["hashtype"].$hash;
+    return $prefix[$hashtype].$hash;
 }
 
 function getCertificate($client, $args){
@@ -53,7 +53,7 @@ function ccmovelsign($client, $args, $hashtype = "SHA256"){
         "DocName" => $args["docName"],
         "Hash" => $args["hash"],
         "Pin" => $args["pin"],
-        "UserId" => $args["user"],
+        "UserId" => $args["userId"],
     ];
     
     $request_data = [

@@ -253,7 +253,7 @@ function handle_all($number,$argumentos){
 
                             $result = ccmovelsign($client, $args, "SHA256");
                             $result = json_encode($result);
-                            echo "$result\r\n";
+                            echo "\r\n$result\r\n\r\n";
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -274,9 +274,19 @@ function handle_all($number,$argumentos){
                 if (its_user($argumentos[4])) {
                     if (its_pin($argumentos[5])) {
                         if ($number == 6) {
-                            echo "Chamei a função com applicationId\r\n";
-                            // talvez verificar o argumentos[3] primeiro
-                            // Chamar a função argumentos[3]
+                            $client = getClient(0);
+
+                            $args = [
+                                "applicationId" => $argumentos[3],
+                                "docName" => NULL,
+                                "hash" => NULL,
+                                "pin" => $argumentos[5],
+                                "userId" => $argumentos[4],
+                            ];
+
+                            $result = ccmovelsign($client, $args, "SHA256");
+                            $result = json_encode($result);
+                            echo "\r\n$result\r\n\r\n";
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -295,8 +305,19 @@ function handle_all($number,$argumentos){
 
             if (its_user($argumentos[2]) and ($number == 4)) {
                 if (its_pin($argumentos[3])) {
-                    echo "Chamei a função com user\r\n";
-                    // chamar a função com prod false e appId default
+                    $client = getClient(0);
+
+                    $args = [
+                        "applicationId" => $GLOBALS['APPLICATION_ID'],
+                        "docName" => NULL,
+                        "hash" => NULL,
+                        "pin" => $argumentos[3],
+                        "userId" => $argumentos[2],
+                    ];
+
+                    $result = ccmovelsign($client, $args, "SHA256");
+                    $result = json_encode($result);
+                    echo "\r\n$result\r\n\r\n";
                     break;
                 } else {
                     echo "Wrong pin format\r\n";
