@@ -1,15 +1,12 @@
 <?php
-/*
-include 'cmd_soap_msg.php';
-            echo "Version 1.0\r\n";
-
-*/
 
 include 'cmd_soap_msg.php';
 include 'cmd_config.php';
 include 'helpers.php';
 
 $APPLICATION_ID = get_appid();
+$TEXT = "test Command Line Program (for Preprod/Prod Signature CMD (SOAP) version 1.6 technical specification)\r\n";
+$version = "test_cmd_wsdl.php Version 1.0\r\n";
 
 $number = $argc;
 $argm = $argv;
@@ -31,10 +28,11 @@ function main($number, $argm) {
 function handle_single($argumento){
     switch ($argumento) {
         case '-h':
-            echo "usage: test_cmd_wsdl.py [-h] [-V]\r\n";
+            echo "usage: test_cmd_wsdl.php [-h] [-V]\r\n";
             echo "                        {GetCertificate,gc,CCMovelSign,ms,CCMovelMultipleSign,mms,ValidateOtp,otp,TestAll,test}\r\n";
             echo "                        ...\r\n\r\n";
-            echo "test Command Line Program (for Preprod/Prod Signature CMD (SOAP) version 1.6 technical specification)\r\n\r\n";
+            echo $GLOBALS['TEXT'];
+            echo "\r\n";
             echo "optional arguments:\r\n";
             echo "  -h, --help           show this help message and exit\r\n";
             echo "  -h, --help           show program version\r\n\r\n";
@@ -47,10 +45,11 @@ function handle_single($argumento){
             echo "    TestAll (test)            -> Automatically test all comands\r\n";
             break;
         case '--help':
-            echo "usage: test_cmd_wsdl.py [-h] [-V]\r\n";
+            echo "usage: test_cmd_wsdl.php [-h] [-V]\r\n";
             echo "                        {GetCertificate,gc,CCMovelSign,ms,CCMovelMultipleSign,mms,ValidateOtp,otp,TestAll,test}\r\n";
             echo "                        ...\r\n\r\n";
-            echo "test Command Line Program (for Preprod/Prod Signature CMD (SOAP) version 1.6 technical specification)\r\n\r\n";
+            echo $GLOBALS['TEXT'];
+            echo "\r\n";
             echo "optional arguments:\r\n";
             echo "  -h, --help           show this help message and exit\r\n";
             echo "  -h, --help           show program version\r\n\r\n";
@@ -63,10 +62,10 @@ function handle_single($argumento){
             echo "    TestAll (test)            -> Automatically test all comands\r\n";
             break;
         case '-V':
-            echo "test_cmd_wsdl.py v1.0\r\n";
+            echo $GLOBALS['version'];
             break;
         case '--version':
-            echo "test_cmd_wsdl.py v1.0\r\n";
+            echo $GLOBALS['version'];
             break;
         default:
             echo "Use -h for usage :\r\n";
@@ -240,7 +239,7 @@ function handle_all($number,$argumentos){
 
             if (($argumentos[2] == "-prod") and ($number == 5)) {
                 if (its_user($argumentos[3])) {
-                    if (its_pin($agumentos[4])) {
+                    if (its_pin($argumentos[4])) {
                         if ($number == 5) {
                             echo "Chamei a função com prod\r\n";
                             // Chamar a função prod==1
@@ -262,10 +261,10 @@ function handle_all($number,$argumentos){
 
             if (($argumentos[2] == "-applicationId") and ($number == 6)) {
                 if (its_user($argumentos[4])) {
-                    if (its_pin($agumentos[5])) {
+                    if (its_pin($argumentos[5])) {
                         if ($number == 6) {
                             echo "Chamei a função com applicationId\r\n";
-                            // talvez verificar o agumentos[3] primeiro
+                            // talvez verificar o argumentos[3] primeiro
                             // Chamar a função argumentos[3]
                             break;
                         } else {
@@ -284,7 +283,7 @@ function handle_all($number,$argumentos){
             }
 
             if (its_user($argumentos[2]) and ($number == 4)) {
-                if (its_pin($agumentos[3])) {
+                if (its_pin($argumentos[3])) {
                     echo "Chamei a função com user\r\n";
                     // chamar a função com prod false e appId default
                     break;
@@ -312,7 +311,7 @@ function handle_all($number,$argumentos){
 
             if (($argumentos[2] == "-prod") and ($number == 5)) {
                 if (its_user($argumentos[3])) {
-                    if (its_pin($agumentos[4])) {
+                    if (its_pin($argumentos[4])) {
                         if ($number == 5) {
                             echo "Chamei a função com prod\r\n";
                             // Chamar a função prod==1
@@ -334,10 +333,10 @@ function handle_all($number,$argumentos){
 
             if (($argumentos[2] == "-applicationId") and ($number == 6)) {
                 if (its_user($argumentos[4])) {
-                    if (its_pin($agumentos[5])) {
+                    if (its_pin($argumentos[5])) {
                         if ($number == 6) {
                             echo "Chamei a função com applicationId\r\n";
-                            // talvez verificar o agumentos[3] primeiro
+                            // talvez verificar o argumentos[3] primeiro
                             // Chamar a função argumentos[3]
                             break;
                         } else {
@@ -356,7 +355,7 @@ function handle_all($number,$argumentos){
             }
 
             if (its_user($argumentos[2]) and ($number == 4)) {
-                if (its_pin($agumentos[3])) {
+                if (its_pin($argumentos[3])) {
                     echo "Chamei a função com user\r\n";
                     // chamar a função com prod false e appId default
                     break;
@@ -384,7 +383,7 @@ function handle_all($number,$argumentos){
 
             if (($argumentos[2] == "-prod") and ($number == 5)) {
                 if (its_otp($argumentos[3])) {
-                    if (its_processId($agumentos[4])) {
+                    if (its_processId($argumentos[4])) {
                         if ($number == 5) {
                             echo "Chamei a função com prod\r\n";
                             // Chamar a função prod==1
@@ -394,7 +393,7 @@ function handle_all($number,$argumentos){
                             break;
                         }
                     } else {
-                        echo "Wrong pin format\r\n";
+                        echo "Wrong processId format\r\n";
                         break;
                     }
                 } else {
@@ -406,10 +405,10 @@ function handle_all($number,$argumentos){
 
             if (($argumentos[2] == "-applicationId") and ($number == 6)) {
                 if (its_otp($argumentos[4])) {
-                    if (its_processId($agumentos[5])) {
+                    if (its_processId($argumentos[5])) {
                         if ($number == 6) {
                             echo "Chamei a função com applicationId\r\n";
-                            // talvez verificar o agumentos[3] primeiro
+                            // talvez verificar o argumentos[3] primeiro
                             // Chamar a função argumentos[3]
                             break;
                         } else {
@@ -417,7 +416,7 @@ function handle_all($number,$argumentos){
                             break;
                         }
                     } else {
-                        echo "Wrong pin format\r\n";
+                        echo "Wrong processId format\r\n";
                         break;
                     }    
                 } else {
@@ -428,12 +427,12 @@ function handle_all($number,$argumentos){
             }
 
             if (its_otp($argumentos[2]) and ($number == 4)) {
-                if (its_processId($agumentos[3])) {
+                if (its_processId($argumentos[3])) {
                     echo "Chamei a função com otp\r\n";
                     // chamar a função com prod false e appId default
                     break;
                 } else {
-                    echo "Wrong pin format\r\n";
+                    echo "Wrong processId format\r\n";
                     break;
                 }    
             } else {
@@ -451,7 +450,93 @@ function handle_all($number,$argumentos){
         case 'test':
             if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 test_help();
+                break;
+            } 
+
+            if (($argumentos[2] == "-prod") and ($number == 6)) {
+                if ($myfile = fopen($argumentos[3],"r")) {
+                    $readFile = fread($myfile,filesize($argumentos[3]));    
+                    if (its_user($argumentos[4])) {
+                        if (its_pin($argumentos[5])) {
+                            if ($number == 6) {
+                                echo "Chamei a função com prod\r\n";
+                                // Chamar a função prod==1
+                                break;
+                            } else {
+                                echo "Wrong number of arguments, check -h for help.\r\n";
+                                break;
+                            }
+                        } else {
+                            echo "Wrong pin format\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong user\r\n";
+                        echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                        break;
+                    }
+                } else {
+                    echo "File not found\r\n";
+                    break;
+                }
             }
+
+            if (($argumentos[2] == "-applicationId") and ($number == 7)) {
+                if ($myfile = fopen($argumentos[4],"r")) {
+                    $readFile = fread($myfile,filesize($argumentos[4])); 
+                    if (its_user($argumentos[5])) {
+                        if (its_pin($argumentos[6])) {
+                            if ($number == 7) {
+                                echo "Chamei a função com prod\r\n";
+                                // Chamar a função prod==1
+                                break;
+                            } else {
+                                echo "Wrong number of arguments, check -h for help.\r\n";
+                                break;
+                            }
+                        } else {
+                            echo "Wrong pin format\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong user\r\n";
+                        echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                        break;
+                    }
+                } else {
+                    echo "File not found\r\n";
+                    break;
+                }
+            }
+
+            if ($myfile = fopen($argumentos[2],"r") and ($number == 5)) {
+                $readFile = fread($myfile,filesize($argumentos[2])); 
+                if (its_user($argumentos[3])) {
+                    if (its_pin($argumentos[4])) {
+                        if ($number == 5) {
+                            echo "chamei função\r\n";
+                            // Chamar função
+                            break;
+                        } else {
+                            echo "Wrong number of arguments, check -h for help.\r\n";
+                            break;
+                        }
+                    } else {
+                        echo "Wrong pin format\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            } else {
+                echo "File not found\r\n";
+                break;
+            }
+
+            echo "Wrong arguments\r\n";
+            test_help();
             break;
         case 'TestAll':
             // just copy above...do later
