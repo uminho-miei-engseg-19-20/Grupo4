@@ -66,9 +66,9 @@ function ccmovelsign($client, $args, $hashtype = "SHA256"){
 function ccmovelmultiplesign($client, $args){
 
     $request = [
-        "ApplicationId" => $args["applicationId"].encode("UTF-8"),
+        "ApplicationId" => utf8_encode($args["applicationId"]),
         "Pin" => $args["pin"],
-        "UserId" => $args["user"],
+        "UserId" => $args["userId"],
     ];
 
     $doc_1 = [
@@ -103,7 +103,7 @@ function ccmovelmultiplesign($client, $args){
 function validate_otp($client, $args){
 
     $request_data = [
-        "applicationId" => $args["applicationId"].encode("UTF-8"),
+        "applicationId" => utf8_encode($args["applicationId"]),
         "processId" => $args["ProcessId"],
         "code" => $args["OTP"],
     ];
