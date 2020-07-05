@@ -6,6 +6,7 @@ include 'cmd_soap_msg.php';
 */
 
 include 'cmd_config.php';
+include 'helpers.php';
 
 $APPLICATION_ID = get_appid();
 
@@ -77,53 +78,130 @@ function handle_single($argumento){
 function handle_all($number,$argumentos){
     switch ($argumentos[1]) {
         case 'gc':
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 gc_help();
+                break;
+            } 
+
+            if (($argumentos[2] == "-prod") and ($number == 4)) {
+                if (its_user($argumentos[3])) {
+                    if ($number == 4) {
+                        echo "Chamei a função com prod\r\n";
+                        // Chamar a função prod==1
+                        break;
+                    } else {
+                        echo "Wrong number of arguments, check -h for help.\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
             }
+
+            if (($argumentos[2] == "-applicationId") and ($number == 5)) {
+                if (its_user($argumentos[4])) {
+                    if ($number == 5) {
+                        echo "Chamei a função com applicationId\r\n";
+                        // talvez verificar o agumentos[3] primeiro
+                        // Chamar a função argumentos[3]
+                        break;
+                    } else {
+                        echo "Wrong number of arguments, check -h for help.\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            }
+
+            echo "Wrong arguments\r\n";
+            gc_help();
             break;
         case 'GetCertificate':
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 gc_help();
+                break;
+            } 
+
+            if (($argumentos[2] == "-prod") and ($number == 4)) {
+                if (its_user($argumentos[3])) {
+                    if ($number == 4) {
+                        echo "Chamei a função com prod\r\n";
+                        // Chamar a função prod==1
+                        break;
+                    } else {
+                        echo "Wrong number of arguments, check -h for help.\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
             }
-            break;
+
+            if (($argumentos[2] == "-applicationId") and ($number == 5)) {
+                if (its_user($argumentos[4])) {
+                    if ($number == 5) {
+                        echo "Chamei a função com applicationId\r\n";
+                        // talvez verificar o agumentos[3] primeiro
+                        // Chamar a função argumentos[3]
+                        break;
+                    } else {
+                        echo "Wrong number of arguments, check -h for help.\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            }
+
+            echo "Wrong arguments\r\n";
+            gc_help();
         case 'ms':
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 ms_help();
             }
             break;
         case 'CCMovelSign':
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 ms_help();
             }
             break;
         case 'mms':
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 mms_help();
             }
             break;
         case 'CCMovelMultipleSign':
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 mms_help();
             }
             break;
         case 'otp':
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 otp_help();
             }
             break;
         case 'ValidateOtp':
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 otp_help();
             }
             break;
         case 'test':
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 test_help();
             }
             break;
         case 'TestAll':
             echo $number;
-            if (($argumentos[2] == "-h" or $argumentos == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
                 test_help();
             }
             break;
@@ -133,81 +211,6 @@ function handle_all($number,$argumentos){
             echo "    test_cmd_wsdl.php <oper1> -h for usage of operation <oper1>\r\n";
             break;
     }
-}
-
-function its_user($numero) {
-    return 1;
-}
-
-function gc_help() {
-    echo "usage: test_cmd_wsdl.php GetCertificate [-h] [-applicationId APPLICATIONID]\r\n";
-    echo "                                       [-prod] [-D]\r\n";
-    echo "                                       user\r\n\r\n";
-    echo "Get user certificate\r\n\r\n";
-    echo "positional arguments:\r\n";
-    echo "  user                  user phone number (+XXX NNNNNNNNN)\r\n\r\n";
-    echo "optional arguments:\r\n";
-    echo "  -h, --help                      show this help message and exit\r\n";
-    echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
-}
-
-function ms_help() {
-    echo "usage: test_cmd_wsdl.php CCMovelSign [-h] [-applicationId APPLICATIONID]\r\n";
-    echo "                                       [-prod] [-D]\r\n";
-    echo "                                       user pin\r\n\r\n";
-    echo "Start signature process\n\r\n";
-    echo "positional arguments:\r\n";
-    echo "  user                  user phone number (+XXX NNNNNNNNN)\r\n";
-    echo "  pin                   CMD signature PIN\r\n\r\n";
-    echo "optional arguments:\r\n";
-    echo "  -h, --help                      show this help message and exit\r\n";
-    echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
-}
-
-function mms_help() {
-    echo "usage: test_cmd_wsdl.php CCMovelMultipleSign [-h]\r\n";
-    echo "                                             [-applicationId APPLICATIONID]\r\n";
-    echo "                                             [-prod] [-D]\r\n";
-    echo "                                             user pin\r\n\r\n";
-    echo "Start multiple signature process\n\r\n";
-    echo "positional arguments:\r\n";
-    echo "  user                  user phone number (+XXX NNNNNNNNN)\r\n";
-    echo "  pin                   CMD signature PIN\r\n\r\n";
-    echo "optional arguments:\r\n";
-    echo "  -h, --help                      show this help message and exit\r\n";
-    echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
-}
-
-function otp_help() {
-    echo "usage: test_cmd_wsdl.php ValidateOtp [-h] [-applicationId APPLICATIONID]\r\n";
-    echo "                                     [-prod] [-D]\r\n";
-    echo "                                     OTP ProcessId\r\n\r\n";
-    echo "Validate OTP\n\r\n";
-    echo "positional arguments:\r\n";
-    echo "  OTP                    OTP received in your device\r\n";
-    echo "  ProcessId              ProcessID received in the answer of the CCMovelSign/CCMovelMultipleSign command\r\n\r\n";
-    echo "optional arguments:\r\n";
-    echo "  -h, --help                      show this help message and exit\r\n";
-    echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
-}
-
-function test_help() {
-    echo "usage: test_cmd_wsdl.php TestAll [-h] [-applicationId APPLICATIONID]\r\n";
-    echo "                                 [-prod] [-D]\r\n";
-    echo "                                 file user pin\r\n\r\n";
-    echo "Automatically test all commands\n\r\n";
-    echo "positional arguments:\r\n";
-    echo "  file                   file\r\n";
-    echo "  user                   user phone number (+XXX NNNNNNNNN)\r\n";
-    echo "  pin                    CMD signature PIN\r\n\r\n";
-    echo "optional arguments:\r\n";
-    echo "  -h, --help                      show this help message and exit\r\n";
-    echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
 }
 
 function test_all(){
