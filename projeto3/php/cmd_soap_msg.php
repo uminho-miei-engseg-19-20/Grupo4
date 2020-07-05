@@ -99,9 +99,9 @@ function ccmovelmultiplesign($client, $args){
 function validate_otp($client, $args){
 
     $request_data = [
-        "applicationId" => utf8_encode($args["applicationId"]),
-        "processId" => $args["ProcessId"],
-        "code" => $args["OTP"],
+        "ApplicationId" => utf8_encode($args["applicationId"]),
+        "ProcessId" => $args["processId"],
+        "OTP" => $args["otp"],
     ];
 
     return $client->__soapCall("ValidateOtp",array($request_data));
