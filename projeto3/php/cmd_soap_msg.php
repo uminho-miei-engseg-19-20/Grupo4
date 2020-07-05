@@ -48,7 +48,7 @@ function ccmovelsign($client, $args, $hashtype = "SHA256"){
     if ($args["hash"] == NULL){
         $args["hash"] = hash("sha256", b"Nobody inspects the spammish repetition"); //openssl_digest(hash("sha256", b"Nobody inspects the spammish repetition"), "sha256");
     }
-    $args["hash"] = hashPrefix(hashtype, $args["hash"]);
+    $args["hash"] = hashPrefix($hashtype, $args["hash"]);
 
     $request = [
         "ApplicationId" => utf8_encode($args["applicationId"]),
