@@ -3,7 +3,6 @@
 import hashlib            # hash SHA256
 import logging.config     # debug
 from zeep import Client   # zeep para SOAP
-from zeep.transports import Transport
 */
 
 function debug(){
@@ -23,8 +22,11 @@ function get_wsdl($env) {
 
 function getClient($env = 0, $timeout = 10){
 
-    //transport = Transport(timeout);
-    //return Client(get_wsdl(env),trasport);
+    $wsdl = get_wsdl(env);
+
+    $client = new SoapClient($wsdl);
+
+    return $client;
 }
 
 function hashPrefix(hashtype, hash){
@@ -34,17 +36,19 @@ function hashPrefix(hashtype, hash){
                                     0x65, 0x03, 0x04, 0x02, 0x01, 0x05, 0x00, 0x04, 0x20])),
     };
     */
-    //return prefix.get(hashtype) + hash;
+    array_push($prefix["hashtype"],hash);
+
+    return prefix["hashtype"] ;
 }
 
 function getCertificate(client, args){
 
     request_data = [
-        "applicationId" = args["applicationId"].encode("UTF-8"), // Encode
+        "applicationId" = utf8_encode(args["applicationId"]),
         "userId" = args["user"],
     ];
 
-    //return client.service.GetCertificate(request_data);
+    return $client->__soapCall("GetCertificate",array($request_data);
 }
 
 function ccmovelsign(client, args, hashtype = "SHA256"){
@@ -58,18 +62,18 @@ function ccmovelsign(client, args, hashtype = "SHA256"){
     args["hash"] = hashPrefix(hashtype, args["hash"]);
 
     request = [
-        "ApplicationId": args["applicationId"].encode("UTF-8"), // python
-        "DocName": args["docName"],
-        "Hash": args["hash"],
-        "Pin": args["pin"],
-        "UserId": args["user"],
+        "ApplicationId" = utf8_encode(args["applicationId"]), // python
+        "DocName" = args["docName"],
+        "Hash" = args["hash"],
+        "Pin" = args["pin"],
+        "UserId" = args["user"],
     ];
     
     request_data = [
         "request" = request;
     ];
 
-    //return client.service.CCMovelSign(request_data);
+    return $client->__soapCall("CCMovelSign",array($request_data);
 }
 
 function ccmovelmultiplesign(client, args){
@@ -81,13 +85,13 @@ function ccmovelmultiplesign(client, args){
     ];
 
     doc_1 = [
-        "Hash" = hashlib.sha256(b"Nobody inspects the spammish repetition").digest(),
+        "Hash" = hash("sha256", b"Nobody inspects the spammish repetition"),
         "Name" = "docname teste1", 
         "id"   = "1234",
     ];
 
     doc_2 = [
-        "Hash" = hashlib.sha256(b"Always inspect the spammish repetition").digest(),
+        "Hash" = hash("sha256", b"Always inspect the spammish repetition"),
         "Name" = "docname teste2", 
         "id"   = "1235",
     ];
@@ -106,7 +110,7 @@ function ccmovelmultiplesign(client, args){
         "documents" = documents
     ];
 
-    //return client.service.CCMovelMultipleSign(request_data);
+    return $client->__soapCall("CCMovelMultipleSign",array($request_data);
 }
 
 function validate_otp(client, args){
@@ -117,7 +121,7 @@ function validate_otp(client, args){
         "code" = args["OTP"],
     ];
 
-    //return client.service.ValidateOtp(request_data);
+    return $client->__soapCall("ValidateOtp",array($request_data);
 }
 
 ?>
