@@ -83,13 +83,9 @@ function ccmovelmultiplesign($client, $args){
         "id"   => "1235",
     ];
 
-    $HashStructure = [
+    $documents = [
         "doc_1" => $doc_1,
         "doc_2" => $doc_2,
-    ];
-
-    $documents = [
-        "HashStructure" => $HashStructure,
     ];
 
     $request_data = [
