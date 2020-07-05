@@ -1,28 +1,19 @@
 <?php
-/*
-import hashlib            # hash SHA256
-import logging.config     # debug
-from zeep import Client   # zeep para SOAP
-*/
-
-function debug(){
-    // completar
-}
 
 function get_wsdl($env) {
     $wsdl = array("https://preprod.cmd.autenticacao.gov.pt/Ama.Authentication.Frontend/CCMovelDigitalSignature.svc?wsdl",
                   "https://cmd.autenticacao.gov.pt/Ama.Authentication.Frontend/CCMovelDigitalSignature.svc?wsdl");
 
     if ($env == 0 || $env == 1) {
-        return $wsdl[env];
+        return $wsdl[$env];
     } else {
         echo "No valid WSDL";
     }
 }
 
-function getClient($env = 0, $timeout = 10){
+function getClient($env = 0){
 
-    $wsdl = get_wsdl(env);
+    $wsdl = get_wsdl($env);
 
     $client = new SoapClient($wsdl);
 
@@ -36,7 +27,7 @@ function hashPrefix($ashtype, $hash){
                                     0x65, 0x03, 0x04, 0x02, 0x01, 0x05, 0x00, 0x04, 0x20])),
     };
     */
-    array_push($prefix["hashtype"],hash);
+    array_push($prefix["hashtype"],$hash);
 
     return $prefix["hashtype"];
 }
@@ -44,8 +35,8 @@ function hashPrefix($ashtype, $hash){
 function getCertificate($client, $args){
 
     $request_data = [
-        "ApplicationId" => utf8_encode(args["applicationId"]),
-        "UserId" => $args["user"],
+        "applicationId" => utf8_encode($args["applicationId"]),
+        "userId" => $args["user"],
     ];
 
     return $client->__soapCall("GetCertificate",array($request_data));
@@ -62,7 +53,7 @@ function ccmovelsign($client, $args, $hashtype = "SHA256"){
     $args["hash"] = hashPrefix(hashtype, $args["hash"]);
 
     $request = [
-        "ApplicationId" => utf8_encode($args["applicationId"]), // python
+        "ApplicationId" => utf8_encode($args["applicationId"]),
         "DocName" => $args["docName"],
         "Hash" => $args["hash"],
         "Pin" => $args["pin"],

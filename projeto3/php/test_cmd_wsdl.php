@@ -5,6 +5,7 @@ include 'cmd_soap_msg.php';
 
 */
 
+include 'cmd_soap_msg.php';
 include 'cmd_config.php';
 include 'helpers.php';
 
@@ -86,8 +87,16 @@ function handle_all($number,$argumentos){
             if (($argumentos[2] == "-prod") and ($number == 4)) {
                 if (its_user($argumentos[3])) {
                     if ($number == 4) {
-                        echo "Chamei a função com prod\r\n";
-                        // Chamar a função prod==1
+                        $client = getClient(1);
+
+                        $args = [
+                            "applicationId" => $GLOBALS['APPLICATION_ID'],
+                            "user" => $argumentos[3],
+                        ];
+
+                        $result = getCertificate($client, $args);
+                        $result = json_encode($result);
+                        echo "$result\r\n";
                         break;
                     } else {
                         echo "Wrong number of arguments, check -h for help.\r\n";
@@ -103,9 +112,16 @@ function handle_all($number,$argumentos){
             if (($argumentos[2] == "-applicationId") and ($number == 5)) {
                 if (its_user($argumentos[4])) {
                     if ($number == 5) {
-                        echo "Chamei a função com applicationId\r\n";
-                        // talvez verificar o agumentos[3] primeiro
-                        // Chamar a função argumentos[3]
+                        $client = getClient(0);
+
+                        $args = [
+                            "applicationId" => $argumentos[3],
+                            "user" => $argumentos[4],
+                        ];
+
+                        $result = getCertificate($client, $args);
+                        $result = json_encode($result);
+                        echo "$result\r\n";
                         break;
                     } else {
                         echo "Wrong number of arguments, check -h for help.\r\n";
@@ -119,8 +135,17 @@ function handle_all($number,$argumentos){
             }
 
             if (its_user($argumentos[2]) and ($number == 3)) {
-                echo "Chamei a função com user\r\n";
-                // chamar a função com prod false e appId default
+                $client = getClient(0);
+
+                $args = [
+                    "applicationId" => $GLOBALS['APPLICATION_ID'],
+                    "user" => $argumentos[2],
+                ];
+
+                $result = getCertificate($client, $args);
+                $result = json_encode($result);
+                echo "$result\r\n";
+                break;
             } else {
                 echo "Wrong user\r\n";
                 echo "Correct format it's '+351 NNNNNNNNN'\r\n";
@@ -131,7 +156,81 @@ function handle_all($number,$argumentos){
             gc_help();
             break;
         case 'GetCertificate':
-            // just copy above...do later
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
+                gc_help();
+                break;
+            }
+
+            if (($argumentos[2] == "-prod") and ($number == 4)) {
+                if (its_user($argumentos[3])) {
+                    if ($number == 4) {
+                        $client = getClient(1);
+
+                        $args = [
+                            "applicationId" => $GLOBALS['APPLICATION_ID'],
+                            "user" => $argumentos[3],
+                        ];
+
+                        $result = getCertificate($client, $args);
+                        $result = json_encode($result);
+                        echo "$result\r\n";
+                        break;
+                    } else {
+                        echo "Wrong number of arguments, check -h for help.\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            }
+
+            if (($argumentos[2] == "-applicationId") and ($number == 5)) {
+                if (its_user($argumentos[4])) {
+                    if ($number == 5) {
+                        $client = getClient(0);
+
+                        $args = [
+                            "applicationId" => $argumentos[3],
+                            "user" => $argumentos[4],
+                        ];
+
+                        $result = getCertificate($client, $args);
+                        $result = json_encode($result);
+                        echo "$result\r\n";
+                        break;
+                    } else {
+                        echo "Wrong number of arguments, check -h for help.\r\n";
+                        break;
+                    }
+                } else {
+                    echo "Wrong user\r\n";
+                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                    break;
+                }
+            }
+
+            if (its_user($argumentos[2]) and ($number == 3)) {
+                $client = getClient(0);
+
+                $args = [
+                    "applicationId" => $GLOBALS['APPLICATION_ID'],
+                    "user" => $argumentos[2],
+                ];
+
+                $result = getCertificate($client, $args);
+                $result = json_encode($result);
+                echo "$result\r\n";
+                break;
+            } else {
+                echo "Wrong user\r\n";
+                echo "Correct format it's '+351 NNNNNNNNN'\r\n";
+                break;
+            }
+
+            echo "Wrong arguments\r\n";
+            gc_help();
             break;
         case 'ms':
             if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
