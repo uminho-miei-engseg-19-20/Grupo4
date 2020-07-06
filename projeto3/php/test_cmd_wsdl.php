@@ -878,6 +878,7 @@ function test_all($client, $args) {
         "CA" => openssl_x509_parse($cert_split[2]),
     ];
     // echo 20
+    print_r(openssl_x509_parse($cert_split[0])["subject"]["CN"]);
 
     echo "30% ... Leitura do ficheiro ";
     echo $args['file'];
