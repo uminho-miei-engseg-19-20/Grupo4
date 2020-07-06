@@ -848,8 +848,7 @@ function test_all($client, $args) {
 	echo $GLOBALS['TEXT'];
 	echo "\r\n";
 	echo $GLOBALS['version'];
-	echo "\r\n";
-	echo "\r\n+++ Test All inicializado +++\r\n";
+	echo "\r\n\r\n+++ Test All inicializado +++\r\n\r\n";
 	echo "0% ... Leitura de argumentos da linha de comando:\r\n";
 	echo "              File: ";
 	echo $args['file'];
@@ -859,8 +858,7 @@ function test_all($client, $args) {
 	echo "\r\n";
 	echo "              Pin:  ";
 	echo $args['pin'];
-	echo "\r\n";
-	echo "10% ... A contactar servidor SOAP CMD para operação GetCertificate\r\n";
+	echo "\r\n\r\n10% ... A contactar servidor SOAP CMD para operação GetCertificate\r\n";
 
     $cmd_certs = getCertificate($client, $args);
     $certs = json_decode(json_encode($cmd_certs),true);
@@ -877,21 +875,30 @@ function test_all($client, $args) {
         "Root" => openssl_x509_parse($cert_split[1]),
         "CA" => openssl_x509_parse($cert_split[2]),
     ];
-    // echo 20
-    print_r(openssl_x509_parse($cert_split[0])["subject"]["CN"]);
 
-    echo "30% ... Leitura do ficheiro ";
+    $userString = openssl_x509_parse($cert_split[0])["subject"]["CN"];
+    $rootString = openssl_x509_parse($cert_split[1])["subject"]["CN"];
+    $caString = openssl_x509_parse($cert_split[2])["subject"]["CN"];
+
+	echo "\r\n20% ... Certificado emitido para ";
+	echo $userString;
+	echo " pela Entidade de Certificação ";
+	echo $caString;
+	echo " na hierarquia do ";
+	echo $rootString;
+    echo "\r\n\r\n30% ... Leitura do ficheiro ";
     echo $args['file'];
 	echo "\r\n";
 
     if ($myfile = fopen($args["file"],"r")) {
+    	echo $myfile;
         $readFile = fread($myfile,filesize($argus["file"]));
     } else {
     	echo "File not found";
     	exit();
     }
 
-	echo "40% ... Geração de hash do ficheiro";
+	echo "\r\n40% ... Geração de hash do ficheiro ";
     echo $args['file'];
 	echo "\r\n";
 /*
@@ -908,7 +915,7 @@ function test_all($client, $args) {
           res['ProcessId'])
     vars(args)['ProcessId'] = res['ProcessId']
 */
-    echo "80% ... A iniciar operação ValidateOtp";
+    echo "\r\n80% ... A iniciar operação ValidateOtp";
     $line = readline("Introduza o OTP recebido no seu dispositivo: ");
     if (its_otp($line)) {
     	/*
