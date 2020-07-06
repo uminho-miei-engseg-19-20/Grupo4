@@ -733,8 +733,15 @@ function handle_all($number,$argumentos){
                     if (its_user($argumentos[4])) {
                         if (its_pin($argumentos[5])) {
                             if ($number == 6) {
-                                echo "Chamei a função com prod\r\n";
-                                // Chamar a função prod==1
+                                $client = getClient(1);
+
+                                $args = [
+                                    "applicationId" => $GLOBALS['APPLICATION_ID'],
+                                    "userId" => $argumentos[4],
+                                    "pin" => $argumentos[5],
+                                    "file" => $argumentos[3],
+                                ];
+                                test_all($client, $args);
                                 break;
                             } else {
                                 echo "Wrong number of arguments, check -h for help.\r\n";
@@ -823,12 +830,44 @@ function handle_all($number,$argumentos){
     }
 }
 
-function test_all() {
+function test_all($client, $args) {
+
+    $cmd_certs = getCertificate($client, $args);
+    $certs = json_decode(json_encode($cmd_certs),true);
+
+    if ($certs == NULL){
+        exit;
+    }
+
+    $cert_split = preg_split('/\-\-\-\-\-END CERTIFICATE\-\-\-\-\-/', $certs["GetCertificateResult"]);
+
+    $str_final = '-----END CERTIFICATE-----';
+
+    $cert_split[0] = $cert_split[0]. $str_final;
+    $cert_split[1] = $cert_split[1]. $str_final;
+    $cert_split[2] = $cert_split[2]. $str_final;
+
+    $cert_chain = [
+
+    ];
+
+    //echo "$cert_split[0]\r\n";
+    //echo "$cert_split[1]\r\n";
+    //echo "$cert_split[2]\r\n";
+
+    //print_r($certs);
+
+
+
+
+
+/*
     $line = readline("Introduza o OTP recebido no seu dispositivo: ");
     if (its_otp($line)) {
 
     } else {
         echo "OTP format not valid. Try Again.\r\n";
     }
+*/
 }
 ?>

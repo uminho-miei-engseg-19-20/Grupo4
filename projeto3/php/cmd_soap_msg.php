@@ -32,7 +32,7 @@ function getCertificate($client, $args){
 
     $request_data = [
         "applicationId" => utf8_encode($args["applicationId"]),
-        "userId" => $args["user"],
+        "userId" => $args["userId"],
     ];
 
     return $client->__soapCall("GetCertificate",array($request_data));
