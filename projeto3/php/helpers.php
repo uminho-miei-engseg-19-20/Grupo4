@@ -70,6 +70,18 @@ function its_processId($numero) {
     return 1;
 }
 
+function string_split($certs) {
+    $cert_split = preg_split('/\-\-\-\-\-END CERTIFICATE\-\-\-\-\-/', $certs["GetCertificateResult"]);
+
+    $str_final = '-----END CERTIFICATE-----';
+
+    $cert_split[0] = $cert_split[0] . $str_final;
+    $cert_split[1] = $cert_split[1] . $str_final;
+    $cert_split[2] = $cert_split[2] . $str_final;
+
+    return $cert_split;
+}
+
 function gc_help() {
     echo "usage: test_cmd_wsdl.php GetCertificate [-h] [-applicationId APPLICATIONID]\r\n";
     echo "                                       [-prod] [-D]\r\n";

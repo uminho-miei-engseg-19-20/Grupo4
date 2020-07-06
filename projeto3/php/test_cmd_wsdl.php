@@ -832,20 +832,30 @@ function handle_all($number,$argumentos){
 
 function test_all($client, $args) {
 
+	echo $GLOBALS['TEXT'];
+	echo "\r\n";
+	echo $GLOBALS['version'];
+	echo "\r\n";
+	echo "\r\n+++ Test All inicializado +++\r\n";
+	echo "0% ... Leitura de argumentos da linha de comando:\r\n";
+	echo "              File: ";
+	echo $args['file'];
+	echo "\r\n";
+	echo "              User: ";
+	echo $args['userId'];
+	echo "\r\n";
+	echo "              Pin:  ";
+	echo $args['pin'];
+	echo "\r\n";
+	echo "10% ... A contactar servidor SOAP CMD para operação GetCertificate\r\n";
     $cmd_certs = getCertificate($client, $args);
     $certs = json_decode(json_encode($cmd_certs),true);
 
-    if ($certs == NULL){
+    if ($certs == NULL) {
+    	echo "Não é possível obter o certificado.";
         exit;
     }
-
-    $cert_split = preg_split('/\-\-\-\-\-END CERTIFICATE\-\-\-\-\-/', $certs["GetCertificateResult"]);
-
-    $str_final = '-----END CERTIFICATE-----';
-
-    $cert_split[0] = $cert_split[0]. $str_final;
-    $cert_split[1] = $cert_split[1]. $str_final;
-    $cert_split[2] = $cert_split[2]. $str_final;
+    $cert_split = string_split($certs);
 
     $cert_chain = [
         "User" => openssl_x509_parse($cert_split[0]),
@@ -859,9 +869,6 @@ function test_all($client, $args) {
     } else {
 
     }*/
-
-
-
 
 /*
     $line = readline("Introduza o OTP recebido no seu dispositivo: ");
