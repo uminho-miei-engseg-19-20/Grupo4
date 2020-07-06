@@ -848,26 +848,26 @@ function handle_all($number,$argumentos) {
 }
 
 function test_all($client, $args) {
-	echo $GLOBALS['TEXT'];
-	echo "\r\n";
-	echo $GLOBALS['version'];
-	echo "\r\n\r\n+++ Test All inicializado +++\r\n\r\n";
-	echo "0% ... Leitura de argumentos da linha de comando:\r\n";
-	echo "              File: ";
-	echo $args['file'];
-	echo "\r\n";
-	echo "              User: ";
-	echo $args['userId'];
-	echo "\r\n";
-	echo "              Pin:  ";
-	echo $args['pin'];
-	echo "\r\n\r\n10% ... A contactar servidor SOAP CMD para operação GetCertificate\r\n";
+    echo $GLOBALS['TEXT'];
+    echo "\r\n";
+    echo $GLOBALS['version'];
+    echo "\r\n\r\n+++ Test All inicializado +++\r\n\r\n";
+    echo "0% ... Leitura de argumentos da linha de comando:\r\n";
+    echo "              File: ";
+    echo $args['file'];
+    echo "\r\n";
+    echo "              User: ";
+    echo $args['userId'];
+    echo "\r\n";
+    echo "              Pin:  ";
+    echo $args['pin'];
+    echo "\r\n\r\n10% ... A contactar servidor SOAP CMD para operação GetCertificate\r\n";
 
     $cmd_certs = getCertificate($client, $args);
     $certs = json_decode(json_encode($cmd_certs),true);
 
     if ($certs == NULL) {
-    	echo "Não é possível obter o certificado.";
+        echo "Não é possível obter o certificado.";
         exit;
     }
 
@@ -883,52 +883,48 @@ function test_all($client, $args) {
     $rootString = openssl_x509_parse($cert_split[1])["subject"]["CN"];
     $caString = openssl_x509_parse($cert_split[2])["subject"]["CN"];
 
-	echo "\r\n20% ... Certificado emitido para ";
-	echo $userString;
-	echo " pela Entidade de Certificação ";
-	echo $caString;
-	echo " na hierarquia do ";
-	echo $rootString;
+    echo "\r\n20% ... Certificado emitido para ";
+    echo $userString;
+    echo " pela Entidade de Certificação ";
+    echo $caString;
+    echo " na hierarquia do ";
+    echo $rootString;
     echo "\r\n\r\n30% ... Leitura do ficheiro ";
     echo $args['file'];
-	echo "\r\n";
+    echo "\r\n";
 
     if ($myfile = fopen($args["file"],"r")) {
-    	echo $myfile;
+        echo $myfile;
         $readFile = fread($myfile,filesize($args["file"]));
     } else {
-    	echo "File not found";
-    	exit();
+        echo "File not found";
+        exit();
     }
 
-	echo "\r\n40% ... Geração de hash do ficheiro ";
+    echo "\r\n40% ... Geração de hash do ficheiro ";
     echo $args['file'];
 
     $args["hash"] = openssl_digest((hash("sha256", $readFile)),"sha256");
 
-	echo "\r\n\r\n50% ... Hash gerada (em base64): ";
-
-	echo utf8_decode(base64_encode($args["hash"]));
-		
+    echo "\r\n\r\n50% ... Hash gerada (em base64): ";
+    echo utf8_decode(base64_encode($args["hash"]));     
     echo "\r\n\r\n60% ... A contactar servidor SOAP CMD para operação CCMovelSign\r\n";
 
     $args["docName"] = $args["file"];
-
     $res = ccmovelsign($client, $args);
-    
-    $aux = json_decode(json_encode($res),true);
+    $res = json_decode(json_encode($res),true);
 
-   	if (($aux['CCMovelSignResult']['Code']) != 200) {
+    if (($res['CCMovelSignResult']['Code']) != 200) {
         echo "\r\nErro ";
-        echo $aux['CCMovelSignResult']['Code'];
+        echo $res['CCMovelSignResult']['Code'];
         echo "\r\nValide o PIN introduzido.\r\n";
         exit();
-   	}
- 
-    echo "\r\n70% ... ProcessID devolvido pela operação CCMovelSign: ";
-    echo $res['ProcessId'];
+    }
 
-    $args["processId"] = $res["ProcessId"];
+    echo "\r\n70% ... ProcessID devolvido pela operação CCMovelSign: ";
+    echo $res['CCMovelSignResult']['ProcessId'];
+
+    $args["processId"] = $res['CCMovelSignResult']["ProcessId"];
 
     echo "\r\n\r\n80% ... A iniciar operação ValidateOtp\r\n";
     $line = readline("Introduza o OTP recebido no seu dispositivo: ");
@@ -936,11 +932,11 @@ function test_all($client, $args) {
         echo "\r\n90% ... A contactar servidor SOAP CMD para operação ValidateOtp\r\n";
         
         $args["otp"] = $line;
-    	$res = validate_otp($client, $args);
-    	
+        $res = validate_otp($client, $args);
+        $res = json_decode(json_encode($res),true);
     } else {
         echo "OTP format not valid. Try Again.\r\n";
-    	exit();
+        exit();
     }
 
     /*
@@ -949,9 +945,9 @@ function test_all($client, $args) {
               '. ' + res['Status']['Message'])
        exit()
 
-      	print('100% ... Assinatura (em base 64) devolvida pela operação ValidateOtp: ' +
+        print('100% ... Assinatura (em base 64) devolvida pela operação ValidateOtp: ' +
           base64.b64encode(res['Signature']).decode())
-    	print('110% ... A validar assinatura ...')
+        print('110% ... A validar assinatura ...')
     # message = base64.b64decode(dtbs)
     digest = SHA256.new()
     digest.update(file_content)
