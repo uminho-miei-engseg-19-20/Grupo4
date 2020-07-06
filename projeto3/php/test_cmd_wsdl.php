@@ -729,7 +729,7 @@ function handle_all($number,$argumentos){
 
             if (($argumentos[2] == "-prod") and ($number == 6)) {
                 if ($myfile = fopen($argumentos[3],"r")) {
-                    $readFile = fread($myfile,filesize($argumentos[3]));    
+                    fclose($myfile);
                     if (its_user($argumentos[4])) {
                         if (its_pin($argumentos[5])) {
                             if ($number == 6) {
@@ -764,12 +764,19 @@ function handle_all($number,$argumentos){
 
             if (($argumentos[2] == "-applicationId") and ($number == 7)) {
                 if ($myfile = fopen($argumentos[4],"r")) {
-                    $readFile = fread($myfile,filesize($argumentos[4])); 
+                    fclose($myfile);
                     if (its_user($argumentos[5])) {
                         if (its_pin($argumentos[6])) {
                             if ($number == 7) {
-                                echo "Chamei a função com prod\r\n";
-                                // Chamar a função prod==1
+                                $client = getClient(0);
+
+                                $args = [
+                                    "applicationId" => $argumentos[3],
+                                    "userId" => $argumentos[5],
+                                    "pin" => $argumentos[6],
+                                    "file" => $argumentos[4],
+                                ];
+                                test_all($client, $args);
                                 break;
                             } else {
                                 echo "Wrong number of arguments, check -h for help.\r\n";
@@ -791,12 +798,19 @@ function handle_all($number,$argumentos){
             }
 
             if ($myfile = fopen($argumentos[2],"r") and ($number == 5)) {
-                $readFile = fread($myfile,filesize($argumentos[2])); 
+                fclose($myfile);
                 if (its_user($argumentos[3])) {
                     if (its_pin($argumentos[4])) {
                         if ($number == 5) {
-                            echo "chamei função\r\n";
-                            // Chamar função
+                            $client = getClient(0);
+
+                            $args = [
+                                "applicationId" => $GLOBALS['APPLICATION_ID'],
+                                "userId" => $argumentos[3],
+                                "pin" => $argumentos[4],
+                                "file" => $argumentos[2],
+                            ];
+                            test_all($client, $args);
                             break;
                         } else {
                             echo "Wrong number of arguments, check -h for help.\r\n";
@@ -831,7 +845,6 @@ function handle_all($number,$argumentos){
 }
 
 function test_all($client, $args) {
-
 	echo $GLOBALS['TEXT'];
 	echo "\r\n";
 	echo $GLOBALS['version'];
