@@ -29,14 +29,10 @@ function handleSingle($argumento)
 {
     switch ($argumento) {
     case '-h':
-        helpHelp();
-        break;
     case '--help':
         helpHelp();
         break;
     case '-V':
-        echo $GLOBALS['version'];
-        break;
     case '--version':
         echo $GLOBALS['version'];
         break;
