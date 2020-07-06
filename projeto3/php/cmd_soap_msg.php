@@ -1,8 +1,11 @@
 <?php
 
-function get_wsdl($env) {
-    $wsdl = array("https://preprod.cmd.autenticacao.gov.pt/Ama.Authentication.Frontend/CCMovelDigitalSignature.svc?wsdl",
-                  "https://cmd.autenticacao.gov.pt/Ama.Authentication.Frontend/CCMovelDigitalSignature.svc?wsdl");
+function getWsdl($env)
+{
+    $wsdl = array(
+        "https://preprod.cmd.autenticacao.gov.pt/Ama.Authentication.Frontend/CCMovelDigitalSignature.svc?wsdl",
+        "https://cmd.autenticacao.gov.pt/Ama.Authentication.Frontend/CCMovelDigitalSignature.svc?wsdl"
+    );
 
     if ($env == 0 || $env == 1) {
         return $wsdl[$env];
@@ -11,16 +14,16 @@ function get_wsdl($env) {
     }
 }
 
-function getClient($env = 0) {
-
-    $wsdl = get_wsdl($env);
-
+function getClient($env = 0)
+{
+    $wsdl = getWsdl($env);
     $client = new SoapClient($wsdl);
 
     return $client;
 }
 
-function hashPrefix($hashtype, $hash) {
+function hashPrefix($hashtype, $hash)
+{
     $prefix = [
         "SHA256" => b'010\r\x06\t`\x86H\x01e\x03\x04\x02\x01\x05\x00\x04',
     ];
@@ -28,24 +31,26 @@ function hashPrefix($hashtype, $hash) {
     return $prefix[$hashtype].$hash;
 }
 
-function getCertificate($client, $args) {
-
+function getCertificate($client, $args)
+{
     $request_data = [
         "applicationId" => utf8_encode($args["applicationId"]),
         "userId" => $args["userId"],
     ];
 
-    return $client->__soapCall("GetCertificate",array($request_data));
+    return $client->__soapCall("GetCertificate", array($request_data));
 }
 
-function ccmovelsign($client, $args, $hashtype = "SHA256") {
-
-    if ($args["docName"] == NULL) {
+function ccmovelsign($client, $args, $hashtype = "SHA256")
+{
+    if ($args["docName"] == null) {
         $args["docName"] = "docname teste";
     }
 
-    if ($args["hash"] == NULL) {
-        $args["hash"] = openssl_digest(hash("sha256", b"Nobody inspects the spammish repetition"), "sha256");
+    if ($args["hash"] == null) {
+        $args["hash"] = openssl_digest(
+            hash("sha256", b"Nobody inspects the spammish repetition"), "sha256"
+        );
     }
 
     $args["hash"] = hashPrefix($hashtype, $args["hash"]);
@@ -62,11 +67,11 @@ function ccmovelsign($client, $args, $hashtype = "SHA256") {
         "request" => $request,
     ];
 
-    return $client->__soapCall("CCMovelSign",array($request_data));
+    return $client->__soapCall("CCMovelSign", array($request_data));
 }
 
-function ccmovelmultiplesign($client, $args) {
-
+function ccmovelmultiplesign($client, $args)
+{
     $request = [
         "ApplicationId" => utf8_encode($args["applicationId"]),
         "Pin" => $args["pin"],
@@ -95,18 +100,18 @@ function ccmovelmultiplesign($client, $args) {
         "documents" => $documents,
     ];
 
-    return $client->__soapCall("CCMovelMultipleSign",array($request_data));
+    return $client->__soapCall("CCMovelMultipleSign", array($request_data));
 }
 
-function validate_otp($client, $args) {
-
+function validateOtp($client, $args)
+{
     $request_data = [
         "applicationId" => utf8_encode($args["applicationId"]),
         "processId" => $args["processId"],
         "code" => $args["otp"],
     ];
 
-    return $client->__soapCall("ValidateOtp",array($request_data));
+    return $client->__soapCall("ValidateOtp", array($request_data));
 }
 
 ?>

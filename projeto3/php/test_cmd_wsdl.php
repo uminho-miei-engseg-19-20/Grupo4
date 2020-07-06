@@ -641,7 +641,7 @@ function handle_all($number,$argumentos) {
                                 "otp" => $argumentos[3],
                             ];
         
-                            $result = validate_otp($client, $args);
+                            $result = validateOtp($client, $args);
                             $result = json_decode(json_encode($result),true);
                             print_r($result);
                             break;
@@ -672,7 +672,7 @@ function handle_all($number,$argumentos) {
                                 "otp" => $argumentos[4],
                             ];
         
-                            $result = validate_otp($client, $args);
+                            $result = validateOtp($client, $args);
                             $result = json_decode(json_encode($result),true);
                             print_r($result);
                             break;
@@ -701,7 +701,7 @@ function handle_all($number,$argumentos) {
                         "otp" => $argumentos[2],
                     ];
 
-                    $result = validate_otp($client, $args);
+                    $result = validateOtp($client, $args);
                     $result = json_decode(json_encode($result),true);
                     print_r($result);
                     break;
@@ -934,7 +934,7 @@ function test_all($client, $args) {
         echo "\r\n90% ... A contactar servidor SOAP CMD para operação ValidateOtp\r\n";
         
         $args["otp"] = $line;
-        $res = validate_otp($client, $args);
+        $res = validateOtp($client, $args);
         $res = json_decode(json_encode($res),true);
     } else {
         echo "OTP format not valid. Try Again.\r\n";
