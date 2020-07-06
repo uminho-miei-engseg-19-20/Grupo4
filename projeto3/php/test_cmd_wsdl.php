@@ -927,7 +927,9 @@ function test_all($client, $args) {
     $args["processId"] = $res['CCMovelSignResult']["ProcessId"];
 
     echo "\r\n\r\n80% ... A iniciar operação ValidateOtp\r\n";
+
     $line = readline("Introduza o OTP recebido no seu dispositivo: ");
+
     if (its_otp($line)) {
         echo "\r\n90% ... A contactar servidor SOAP CMD para operação ValidateOtp\r\n";
         
@@ -939,27 +941,25 @@ function test_all($client, $args) {
         exit();
     }
 
-    /*
-    if res['Status']['Code'] != '200':
-        print('Erro ' + res['Status']['Code'] +
-              '. ' + res['Status']['Message'])
-       exit()
+    if ($res['ValidateOtpResult']['Status']['Code'] != '200') {
+        echo "\r\nErro ";
+        echo $res['ValidateOtpResult']['Status']['Code'];
+        echo ". ";
+        echo $res['ValidateOtpResult']['Status']['Message'];
+        exit();
+    }
 
-        print('100% ... Assinatura (em base 64) devolvida pela operação ValidateOtp: ' +
-          base64.b64encode(res['Signature']).decode())
-        print('110% ... A validar assinatura ...')
-    # message = base64.b64decode(dtbs)
-    digest = SHA256.new()
-    digest.update(file_content)
-    public_key = RSA.import_key(certs[0].as_bytes())
-    verifier = PKCS1_v1_5.new(public_key)
-    verified = verifier.verify(digest, res['Signature'])
-    assert verified, 'Falha na verificação da assinatura'
-    print('Assinatura verificada com sucesso, baseada na assinatura recebida, na hash gerada e ' +
-          'na chave pública do certificado de ' + certs_chain['user'].get_subject().CN)
+    echo "\r\n100% ... Assinatura (em base 64) devolvida pela operação ValidateOtp:";
+    echo utf8_decode(base64_encode($res['ValidateOtpResult']['Signature']));
+    echo '\r\n\r\n110% ... A validar assinatura ...\r\n';
 
-*/
-    echo "\r\n+++ Test All finalizado +++\r\n";
+    $digest = openssl_digest(hash("sha256", $readFile));
+    $public_key = openssl_get_publickey($cert_split[0]);
+    $verified = openssl_verify($digest, $res['ValidateOtpResult']['Signature'], $public_key);
+    
+    echo "\r\nAssinatura verificada com sucesso, baseada na assinatura recebida, na hash gerada e na chave pública do certificado de ";
+    echo $userString;
+    echo "\r\n\r\n+++ Test All finalizado +++\r\n";
 }
 
 ?>
