@@ -26,4 +26,4 @@ A82491 - Tiago Pinheiro
 
 * [Projeto 1](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/projeto1) - *Managing Security Risks Inherent in the Use of Third-party Components*
 * [Projeto 2](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/projeto2) - Ferramentas e técnicas de *Coding standards*
-* [Projeto 3](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/projeto2) - *Reverse engineer* da aplicação *CMD-SOAP*
+* [Projeto 3](https://github.com/uminho-miei-engseg-19-20/Grupo4/tree/master/projeto3) - *Reverse engineer* da aplicação *CMD-SOAP*
