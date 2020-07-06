@@ -1,24 +1,28 @@
 <?php
 
-function its_user($numero) {
+function itsUser($numero)
+{
     $n = str_split($numero);
 
     if (count($n) != 14) {
         return 0;
-    } elseif ($n[0] == "+" and is_numeric($n[1]) and is_numeric($n[2]) and is_numeric($n[3]) and
-              $n[4] == " " and is_numeric($n[5]) and is_numeric($n[6]) and is_numeric($n[7]) and
-                is_numeric($n[8]) and is_numeric($n[9]) and is_numeric($n[10]) and 
-                is_numeric($n[11]) and is_numeric($n[12]) and is_numeric($n[13])) {
-                    return 1;
+    } elseif ($n[0] == "+" and is_numeric($n[1]) and is_numeric($n[2])
+        and is_numeric($n[3]) and $n[4] == " " and is_numeric($n[5])
+        and is_numeric($n[6]) and is_numeric($n[7]) and is_numeric($n[8])
+        and is_numeric($n[9]) and is_numeric($n[10]) and is_numeric($n[11])
+        and is_numeric($n[12]) and is_numeric($n[13])
+    ) {
+        return 1;
     } else {
         return 0;
     }
 }
 
-function its_pin($numero) {
+function itsPin($numero)
+{
     $n = str_split($numero);
 
-    for($i = 0; $i < count($n); $i++) {
+    for ($i = 0; $i < count($n); $i++) {
         if (!is_numeric($n[$i])) {
             return 0;
         }
@@ -27,7 +31,8 @@ function its_pin($numero) {
     return 1;
 }
 
-function its_otp($numero) {
+function itsOtp($numero)
+{
     $n = str_split($numero);
 
     if (count($n) != 6) {
@@ -43,7 +48,8 @@ function its_otp($numero) {
     return 1;
 }
 
-function its_processId($numero) {
+function itsProcessId($numero)
+{
     $n = str_split($numero);
 
     if (count($n) != 36) {
@@ -70,8 +76,11 @@ function its_processId($numero) {
     return 1;
 }
 
-function string_split($certs) {
-    $cert_split = preg_split('/\-\-\-\-\-END CERTIFICATE\-\-\-\-\-/', $certs["GetCertificateResult"]);
+function stringSplit($certs)
+{
+    $cert_split = preg_split(
+        '/\-\-\-\-\-END CERTIFICATE\-\-\-\-\-/', $certs["GetCertificateResult"]
+    );
 
     $str_final = '-----END CERTIFICATE-----';
 
@@ -82,8 +91,10 @@ function string_split($certs) {
     return $cert_split;
 }
 
-function gc_help() {
-    echo "usage: test_cmd_wsdl.php GetCertificate [-h] [-applicationId APPLICATIONID]\r\n";
+function gcHelp()
+{
+    echo "usage: test_cmd_wsdl.php GetCertificate ";
+    echo "[-h] [-applicationId APPLICATIONID]\r\n";
     echo "                                       [-prod] [-D]\r\n";
     echo "                                       user\r\n\r\n";
     echo "Get user certificate\r\n\r\n";
@@ -92,11 +103,14 @@ function gc_help() {
     echo "optional arguments:\r\n";
     echo "  -h, --help                      show this help message and exit\r\n";
     echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
+    echo "  -prod                           Use production SCMD service ";
+    echo "(preproduction SCMD service used by default)\r\n";
 }
 
-function ms_help() {
-    echo "usage: test_cmd_wsdl.php CCMovelSign [-h] [-applicationId APPLICATIONID]\r\n";
+function msHelp()
+{
+    echo "usage: test_cmd_wsdl.php CCMovelSign ";
+    echo "[-h] [-applicationId APPLICATIONID]\r\n";
     echo "                                       [-prod] [-D]\r\n";
     echo "                                       user pin\r\n\r\n";
     echo "Start signature process\n\r\n";
@@ -106,12 +120,15 @@ function ms_help() {
     echo "optional arguments:\r\n";
     echo "  -h, --help                      show this help message and exit\r\n";
     echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
+    echo "  -prod                           Use production SCMD service ";
+    echo "(preproduction SCMD service used by default)\r\n";
 }
 
-function mms_help() {
+function mmsHelp()
+{
     echo "usage: test_cmd_wsdl.php CCMovelMultipleSign [-h]\r\n";
-    echo "                                             [-applicationId APPLICATIONID]\r\n";
+    echo "                                             ";
+    echo "[-applicationId APPLICATIONID]\r\n";
     echo "                                             [-prod] [-D]\r\n";
     echo "                                             user pin\r\n\r\n";
     echo "Start multiple signature process\n\r\n";
@@ -121,24 +138,30 @@ function mms_help() {
     echo "optional arguments:\r\n";
     echo "  -h, --help                      show this help message and exit\r\n";
     echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
+    echo "  -prod                           Use production SCMD service ";
+    echo "(preproduction SCMD service used by default)\r\n";
 }
 
-function otp_help() {
-    echo "usage: test_cmd_wsdl.php ValidateOtp [-h] [-applicationId APPLICATIONID]\r\n";
+function otpHelp()
+{
+    echo "usage: test_cmd_wsdl.php ValidateOtp ";
+    echo "[-h] [-applicationId APPLICATIONID]\r\n";
     echo "                                     [-prod] [-D]\r\n";
     echo "                                     OTP ProcessId\r\n\r\n";
     echo "Validate OTP\n\r\n";
     echo "positional arguments:\r\n";
     echo "  OTP                    OTP received in your device\r\n";
-    echo "  ProcessId              ProcessID received in the answer of the CCMovelSign/CCMovelMultipleSign command\r\n\r\n";
+    echo "  ProcessId              ProcessID received in the answer ";
+    echo "of the CCMovelSign/CCMovelMultipleSign command\r\n\r\n";
     echo "optional arguments:\r\n";
     echo "  -h, --help                      show this help message and exit\r\n";
     echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
+    echo "  -prod                           Use production SCMD service ";
+    echo "(preproduction SCMD service used by default)\r\n";
 }
 
-function test_help() {
+function testHelp()
+{
     echo "usage: test_cmd_wsdl.php TestAll [-h] [-applicationId APPLICATIONID]\r\n";
     echo "                                 [-prod] [-D]\r\n";
     echo "                                 file user pin\r\n\r\n";
@@ -150,7 +173,8 @@ function test_help() {
     echo "optional arguments:\r\n";
     echo "  -h, --help                      show this help message and exit\r\n";
     echo "  -applicationId APPLICATIONID    CMD ApplicationId\r\n";
-    echo "  -prod                           Use production SCMD service (preproduction SCMD service used by default)\r\n";
+    echo "  -prod                           Use production SCMD service ";
+    echo "(preproduction SCMD service used by default)\r\n";
 }
 
 ?>
