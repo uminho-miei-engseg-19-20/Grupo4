@@ -809,6 +809,7 @@ function handle_all($number,$argumentos){
                                 "userId" => $argumentos[3],
                                 "pin" => $argumentos[4],
                                 "file" => $argumentos[2],
+                                "hash" => NULL,
                             ];
                             test_all($client, $args);
                             break;
@@ -894,8 +895,9 @@ function test_all($client, $args) {
 	echo "40% ... Geração de hash do ficheiro";
     echo $args['file'];
 	echo "\r\n";
+
+    //args["hash"] = openssl_digest(hash("sha256", $readFile));
 /*
-    args.hash = hashlib.sha256(file_content).digest()
     print('50% ... Hash gerada (em base64): ' +
           base64.b64encode(args.hash).decode())
     print('60% ... A contactar servidor SOAP CMD para operação CCMovelSign')
