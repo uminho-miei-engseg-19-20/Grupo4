@@ -848,6 +848,7 @@ function test_all($client, $args) {
 	echo $args['pin'];
 	echo "\r\n";
 	echo "10% ... A contactar servidor SOAP CMD para operação GetCertificate\r\n";
+
     $cmd_certs = getCertificate($client, $args);
     $certs = json_decode(json_encode($cmd_certs),true);
 
@@ -855,6 +856,7 @@ function test_all($client, $args) {
     	echo "Não é possível obter o certificado.";
         exit;
     }
+
     $cert_split = string_split($certs);
 
     $cert_chain = [
@@ -862,21 +864,69 @@ function test_all($client, $args) {
         "Root" => openssl_x509_parse($cert_split[1]),
         "CA" => openssl_x509_parse($cert_split[2]),
     ];
+    // echo 20
 
-    /*
+    echo "30% ... Leitura do ficheiro ";
+    echo $args['file'];
+	echo "\r\n";
+
     if ($myfile = fopen($args["file"],"r")) {
         $readFile = fread($myfile,filesize($argus["file"]));
     } else {
+    	echo "File not found";
+    	exit();
+    }
 
-    }*/
-
+	echo "40% ... Geração de hash do ficheiro";
+    echo $args['file'];
+	echo "\r\n";
 /*
+    args.hash = hashlib.sha256(file_content).digest()
+    print('50% ... Hash gerada (em base64): ' +
+          base64.b64encode(args.hash).decode())
+    print('60% ... A contactar servidor SOAP CMD para operação CCMovelSign')
+    args.docName = args.file
+    res = cmd_soap_msg.ccmovelsign(client, args)
+    if res['Code'] != '200':
+        print('Erro ' + res['Code'] + '. Valide o PIN introduzido.')
+        exit()
+    print('70% ... ProcessID devolvido pela operação CCMovelSign: ' +
+          res['ProcessId'])
+    vars(args)['ProcessId'] = res['ProcessId']
+*/
+    echo "80% ... A iniciar operação ValidateOtp";
     $line = readline("Introduza o OTP recebido no seu dispositivo: ");
     if (its_otp($line)) {
-
+    	/*
+    	print('90% ... A contactar servidor SOAP CMD para operação ValidateOtp')
+    	res = cmd_soap_msg.validate_otp(client, args)
+    	*/
     } else {
         echo "OTP format not valid. Try Again.\r\n";
+    	exit();
     }
-*/
+
+    /*
+    if res['Status']['Code'] != '200':
+        print('Erro ' + res['Status']['Code'] +
+              '. ' + res['Status']['Message'])
+       exit()
+
+      	print('100% ... Assinatura (em base 64) devolvida pela operação ValidateOtp: ' +
+          base64.b64encode(res['Signature']).decode())
+    	print('110% ... A validar assinatura ...')
+    # message = base64.b64decode(dtbs)
+    digest = SHA256.new()
+    digest.update(file_content)
+    public_key = RSA.import_key(certs[0].as_bytes())
+    verifier = PKCS1_v1_5.new(public_key)
+    verified = verifier.verify(digest, res['Signature'])
+    assert verified, 'Falha na verificação da assinatura'
+    print('Assinatura verificada com sucesso, baseada na assinatura recebida, na hash gerada e ' +
+          'na chave pública do certificado de ' + certs_chain['user'].get_subject().CN)
+
+	*/
+    echo "\r\n+++ Test All finalizado +++\r\n";
+
 }
 ?>
