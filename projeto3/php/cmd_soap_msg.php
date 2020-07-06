@@ -11,7 +11,7 @@ function get_wsdl($env) {
     }
 }
 
-function getClient($env = 0){
+function getClient($env = 0) {
 
     $wsdl = get_wsdl($env);
 
@@ -20,7 +20,7 @@ function getClient($env = 0){
     return $client;
 }
 
-function hashPrefix($hashtype, $hash){
+function hashPrefix($hashtype, $hash) {
     $prefix = [
         "SHA256" => b'010\r\x06\t`\x86H\x01e\x03\x04\x02\x01\x05\x00\x04',
     ];
@@ -28,7 +28,7 @@ function hashPrefix($hashtype, $hash){
     return $prefix[$hashtype].$hash;
 }
 
-function getCertificate($client, $args){
+function getCertificate($client, $args) {
 
     $request_data = [
         "applicationId" => utf8_encode($args["applicationId"]),
@@ -38,14 +38,16 @@ function getCertificate($client, $args){
     return $client->__soapCall("GetCertificate",array($request_data));
 }
 
-function ccmovelsign($client, $args, $hashtype = "SHA256"){
-    
-    if ($args["docName"] == NULL){
+function ccmovelsign($client, $args, $hashtype = "SHA256") {
+
+    if ($args["docName"] == NULL) {
         $args["docName"] = "docname teste";
     }
-    if ($args["hash"] == NULL){
+
+    if ($args["hash"] == NULL) {
         $args["hash"] = openssl_digest(hash("sha256", b"Nobody inspects the spammish repetition"), "sha256");
     }
+
     $args["hash"] = hashPrefix($hashtype, $args["hash"]);
 
     $request = [
@@ -63,7 +65,7 @@ function ccmovelsign($client, $args, $hashtype = "SHA256"){
     return $client->__soapCall("CCMovelSign",array($request_data));
 }
 
-function ccmovelmultiplesign($client, $args){
+function ccmovelmultiplesign($client, $args) {
 
     $request = [
         "ApplicationId" => utf8_encode($args["applicationId"]),
@@ -96,7 +98,7 @@ function ccmovelmultiplesign($client, $args){
     return $client->__soapCall("CCMovelMultipleSign",array($request_data));
 }
 
-function validate_otp($client, $args){
+function validate_otp($client, $args) {
 
     $request_data = [
         "applicationId" => utf8_encode($args["applicationId"]),

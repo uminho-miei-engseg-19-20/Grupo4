@@ -75,7 +75,7 @@ function handle_single($argumento) {
     }
 }
 
-function handle_all($number,$argumentos){
+function handle_all($number,$argumentos) {
     switch ($argumentos[1]) {
         case 'gc':
             if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
@@ -901,27 +901,37 @@ function test_all($client, $args) {
 
 	echo "\r\n40% ... Geração de hash do ficheiro ";
     echo $args['file'];
-	echo "\r\n";
 
     //args["hash"] = openssl_digest(hash("sha256", $readFile));
 /*
-    print('50% ... Hash gerada (em base64): ' +
-          base64.b64encode(args.hash).decode())
-    print('60% ... A contactar servidor SOAP CMD para operação CCMovelSign')
+	echo "\r\n\r\n50% ... Hash gerada (em base64): ";
+
+	echo base64.b64encode(args.hash).decode())
+		
+    echo "\r\n\r\n60% ... A contactar servidor SOAP CMD para operação CCMovelSign\r\n";
+
     args.docName = args.file
-    res = cmd_soap_msg.ccmovelsign(client, args)
-    if res['Code'] != '200':
-        print('Erro ' + res['Code'] + '. Valide o PIN introduzido.')
-        exit()
-    print('70% ... ProcessID devolvido pela operação CCMovelSign: ' +
-          res['ProcessId'])
+*/
+    $res = //cmd_soap_msg.ccmovelsign(client, args)
+    
+   	if (res['Code'] != 200) {
+        echo "\r\nErro ";
+        echo $res['Code'];
+        echo "\r\nValide o PIN introduzido.\r\n";
+        exit();
+   	}
+ 
+    echo "\r\n70% ... ProcessID devolvido pela operação CCMovelSign: ";
+    echo $res['ProcessId'];
+
+/*
     vars(args)['ProcessId'] = res['ProcessId']
 */
-    echo "\r\n80% ... A iniciar operação ValidateOtp";
+    echo "\r\n\r\n80% ... A iniciar operação ValidateOtp\r\n";
     $line = readline("Introduza o OTP recebido no seu dispositivo: ");
     if (its_otp($line)) {
+    	echo "\r\n90% ... A contactar servidor SOAP CMD para operação ValidateOtp\r\n";
     	/*
-    	print('90% ... A contactar servidor SOAP CMD para operação ValidateOtp')
     	res = cmd_soap_msg.validate_otp(client, args)
     	*/
     } else {
@@ -948,8 +958,8 @@ function test_all($client, $args) {
     print('Assinatura verificada com sucesso, baseada na assinatura recebida, na hash gerada e ' +
           'na chave pública do certificado de ' + certs_chain['user'].get_subject().CN)
 
-	*/
+*/
     echo "\r\n+++ Test All finalizado +++\r\n";
-
 }
+
 ?>
