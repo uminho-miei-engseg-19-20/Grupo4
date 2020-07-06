@@ -810,6 +810,8 @@ function handle_all($number,$argumentos) {
                                 "pin" => $argumentos[4],
                                 "file" => $argumentos[2],
                                 "hash" => NULL,
+                                "docName" => NULL,
+                                "otp" => NULL,
                             ];
                             test_all($client, $args);
                             break;
@@ -893,7 +895,7 @@ function test_all($client, $args) {
 
     if ($myfile = fopen($args["file"],"r")) {
     	echo $myfile;
-        $readFile = fread($myfile,filesize($argus["file"]));
+        $readFile = fread($myfile,filesize($args["file"]));
     } else {
     	echo "File not found";
     	exit();
@@ -902,21 +904,23 @@ function test_all($client, $args) {
 	echo "\r\n40% ... Geração de hash do ficheiro ";
     echo $args['file'];
 
-    //args["hash"] = openssl_digest(hash("sha256", $readFile));
-/*
+    $args["hash"] = openssl_digest((hash("sha256", $readFile)),"sha256");
+
 	echo "\r\n\r\n50% ... Hash gerada (em base64): ";
 
-	echo base64.b64encode(args.hash).decode())
+	echo utf8_decode(base64_encode($args["hash"]));
 		
     echo "\r\n\r\n60% ... A contactar servidor SOAP CMD para operação CCMovelSign\r\n";
 
-    args.docName = args.file
-*/
-    $res = //cmd_soap_msg.ccmovelsign(client, args)
+    $args["docName"] = $args["file"];
+
+    $res = ccmovelsign($client, $args);
     
-   	if (res['Code'] != 200) {
+    $aux = json_decode(json_encode($res),true);
+
+   	if (($aux['CCMovelSignResult']['Code']) != 200) {
         echo "\r\nErro ";
-        echo $res['Code'];
+        echo $aux['CCMovelSignResult']['Code'];
         echo "\r\nValide o PIN introduzido.\r\n";
         exit();
    	}
@@ -924,16 +928,16 @@ function test_all($client, $args) {
     echo "\r\n70% ... ProcessID devolvido pela operação CCMovelSign: ";
     echo $res['ProcessId'];
 
-/*
-    vars(args)['ProcessId'] = res['ProcessId']
-*/
+    $args["processId"] = $res["ProcessId"];
+
     echo "\r\n\r\n80% ... A iniciar operação ValidateOtp\r\n";
     $line = readline("Introduza o OTP recebido no seu dispositivo: ");
     if (its_otp($line)) {
-    	echo "\r\n90% ... A contactar servidor SOAP CMD para operação ValidateOtp\r\n";
-    	/*
-    	res = cmd_soap_msg.validate_otp(client, args)
-    	*/
+        echo "\r\n90% ... A contactar servidor SOAP CMD para operação ValidateOtp\r\n";
+        
+        $args["otp"] = $line;
+    	$res = validate_otp($client, $args);
+    	
     } else {
         echo "OTP format not valid. Try Again.\r\n";
     	exit();
