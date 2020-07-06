@@ -16,9 +16,7 @@ main($number, $argm);
 function main($number, $argm)
 {
     if ($number < 2) {
-        echo "Use -h for usage :\r\n";
-        echo "    test_cmd_wsdl.php -h for all operations\r\n";
-        echo "    test_cmd_wsdl.php <oper1> -h for usage of operation <oper1>\r\n";
+        defaultHelp();
     } elseif ($number == 2) {
         handleSingle($argm[1]);
     } else {
@@ -30,41 +28,10 @@ function handleSingle($argumento)
 {
     switch ($argumento) {
         case '-h':
-            echo "usage: test_cmd_wsdl.php [-h] [-V]\r\n";
-            echo "                        {GetCertificate,gc,CCMovelSign,ms,";
-            echo "CCMovelMultipleSign,mms,ValidateOtp,otp,TestAll,test}\r\n";
-            echo "                        ...\r\n\r\n";
-            echo $GLOBALS['TEXT'];
-            echo "\r\n";
-            echo "optional arguments:\r\n";
-            echo "  -h, --help           show this help message and exit\r\n";
-            echo "  -h, --help           show program version\r\n\r\n";
-            echo "CCMovelDigitalSignature Service:\r\n";
-            echo "  {GetCertificate,gc,CCMovelSign,ms,CCMovelMultipleSign,mms,";
-            echo "ValidateOtp,otp,TestAll,test} -> Signature CMD (SCMD) operations";
-            echo "\r\n\r\n";
-            echo "    GetCertificate (gc)       -> Get user certificate\r\n";
-            echo "    CCMovelSign (ms)          -> Start signature process\r\n";
-            echo "    CCMovelMultipleSign (mms) -> Start multiple signature process\r\n";
-            echo "    ValidateOtp (otp)         -> Validate OTP\r\n";
-            echo "    TestAll (test)            -> Automatically test all comands\r\n";
+            helpHelp();
             break;
         case '--help':
-            echo "usage: test_cmd_wsdl.php [-h] [-V]\r\n";
-            echo "                        {GetCertificate,gc,CCMovelSign,ms,CCMovelMultipleSign,mms,ValidateOtp,otp,TestAll,test}\r\n";
-            echo "                        ...\r\n\r\n";
-            echo $GLOBALS['TEXT'];
-            echo "\r\n";
-            echo "optional arguments:\r\n";
-            echo "  -h, --help           show this help message and exit\r\n";
-            echo "  -h, --help           show program version\r\n\r\n";
-            echo "CCMovelDigitalSignature Service:\r\n";
-            echo "  {GetCertificate,gc,CCMovelSign,ms,CCMovelMultipleSign,mms,ValidateOtp,otp,TestAll,test} -> Signature CMD (SCMD) operations\r\n\r\n";
-            echo "    GetCertificate (gc)       -> Get user certificate\r\n";
-            echo "    CCMovelSign (ms)          -> Start signature process\r\n";
-            echo "    CCMovelMultipleSign (mms) -> Start multiple signature process\r\n";
-            echo "    ValidateOtp (otp)         -> Validate OTP\r\n";
-            echo "    TestAll (test)            -> Automatically test all comands\r\n";
+            helpHelp();
             break;
         case '-V':
             echo $GLOBALS['version'];
@@ -73,9 +40,7 @@ function handleSingle($argumento)
             echo $GLOBALS['version'];
             break;
         default:
-            echo "Use -h for usage :\r\n";
-            echo "    test_cmd_wsdl.php -h for all operations\r\n";
-            echo "    test_cmd_wsdl.php <oper1> -h for usage of operation <oper1>\r\n";
+            defaultHelp();
             break;
     }
 }
@@ -84,84 +49,10 @@ function handleAll($number,$argumentos)
 {
     switch ($argumentos[1]) {
         case 'gc':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
-                gcHelp();
-                break;
-            }
-
-            if (($argumentos[2] == "-prod") and ($number == 4)) {
-                if (itsUser($argumentos[3])) {
-                    if ($number == 4) {
-                        $client = getClient(1);
-
-                        $args = [
-                            "applicationId" => $GLOBALS['APPLICATION_ID'],
-                            "user" => $argumentos[3],
-                        ];
-
-                        $result = getCertificate($client, $args);
-                        $result = json_decode(json_encode($result), true);
-                        print_r($result);
-                        break;
-                    } else {
-                        echo "Wrong number of arguments, check -h for help.\r\n";
-                        break;
-                    }
-                } else {
-                    echo "Wrong user\r\n";
-                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                    break;
-                }
-            }
-
-            if (($argumentos[2] == "-applicationId") and ($number == 5)) {
-                if (itsUser($argumentos[4])) {
-                    if ($number == 5) {
-                        $client = getClient(0);
-
-                        $args = [
-                            "applicationId" => $argumentos[3],
-                            "user" => $argumentos[4],
-                        ];
-
-                        $result = getCertificate($client, $args);
-                        $result = json_decode(json_encode($result), true);
-                        print_r($result);
-                        break;
-                    } else {
-                        echo "Wrong number of arguments, check -h for help.\r\n";
-                        break;
-                    }
-                } else {
-                    echo "Wrong user\r\n";
-                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                    break;
-                }
-            }
-
-            if (itsUser($argumentos[2]) and ($number == 3)) {
-                $client = getClient(0);
-
-                $args = [
-                    "applicationId" => $GLOBALS['APPLICATION_ID'],
-                    "user" => $argumentos[2],
-                ];
-
-                $result = getCertificate($client, $args);
-                $result = json_decode(json_encode($result), true);
-                print_r($result);
-                break;
-            } else {
-                echo "Wrong user\r\n";
-                echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                break;
-            }
-
-            echo "Wrong arguments\r\n";
-            gcHelp();
-            break;
         case 'GetCertificate':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help")
+                and $number == 3
+            ) {
                 gcHelp();
                 break;
             }
@@ -173,7 +64,7 @@ function handleAll($number,$argumentos)
 
                         $args = [
                             "applicationId" => $GLOBALS['APPLICATION_ID'],
-                            "user" => $argumentos[3],
+                            "userId" => $argumentos[3],
                         ];
 
                         $result = getCertificate($client, $args);
@@ -198,7 +89,7 @@ function handleAll($number,$argumentos)
 
                         $args = [
                             "applicationId" => $argumentos[3],
-                            "user" => $argumentos[4],
+                            "userId" => $argumentos[4],
                         ];
 
                         $result = getCertificate($client, $args);
@@ -221,7 +112,7 @@ function handleAll($number,$argumentos)
 
                 $args = [
                     "applicationId" => $GLOBALS['APPLICATION_ID'],
-                    "user" => $argumentos[2],
+                    "userId" => $argumentos[2],
                 ];
 
                 $result = getCertificate($client, $args);
@@ -238,108 +129,10 @@ function handleAll($number,$argumentos)
             gcHelp();
             break;
         case 'ms':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
-                msHelp();
-                break;
-            } 
-
-            if (($argumentos[2] == "-prod") and ($number == 5)) {
-                if (itsUser($argumentos[3])) {
-                    if (itsPin($argumentos[4])) {
-                        if ($number == 5) {   
-                            $client = getClient(1);
-
-                            $args = [
-                                "applicationId" => $GLOBALS['APPLICATION_ID'],
-                                "docName" => null,
-                                "hash" => null,
-                                "pin" => $argumentos[4],
-                                "userId" => $argumentos[3],
-                            ];
-
-                            $result = ccmovelsign($client, $args, "SHA256");
-                            $result = json_decode(json_encode($result), true);
-                            print_r($result);
-                            break;
-                        } else {
-                            echo "Wrong number of arguments, check -h for help.\r\n";
-                            break;
-                        }
-                    } else {
-                        echo "Wrong pin format\r\n";
-                        break;
-                    }
-                } else {
-                    echo "Wrong user\r\n";
-                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                    break;
-                }
-            }
-
-            if (($argumentos[2] == "-applicationId") and ($number == 6)) {
-                if (itsUser($argumentos[4])) {
-                    if (itsPin($argumentos[5])) {
-                        if ($number == 6) {
-                            $client = getClient(0);
-
-                            $args = [
-                                "applicationId" => $argumentos[3],
-                                "docName" => null,
-                                "hash" => null,
-                                "pin" => $argumentos[5],
-                                "userId" => $argumentos[4],
-                            ];
-
-                            $result = ccmovelsign($client, $args, "SHA256");
-                            $result = json_decode(json_encode($result), true);
-                            print_r($result);
-                            break;
-                        } else {
-                            echo "Wrong number of arguments, check -h for help.\r\n";
-                            break;
-                        }
-                    } else {
-                        echo "Wrong pin format\r\n";
-                        break;
-                    }    
-                } else {
-                    echo "Wrong user\r\n";
-                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                    break;
-                }
-            }
-
-            if (itsUser($argumentos[2]) and ($number == 4)) {
-                if (itsPin($argumentos[3])) {
-                    $client = getClient(0);
-
-                    $args = [
-                        "applicationId" => $GLOBALS['APPLICATION_ID'],
-                        "docName" => null,
-                        "hash" => null,
-                        "pin" => $argumentos[3],
-                        "userId" => $argumentos[2],
-                    ];
-
-                    $result = ccmovelsign($client, $args, "SHA256");
-                    $result = json_decode(json_encode($result), true);
-                    print_r($result);
-                    break;
-                } else {
-                    echo "Wrong pin format\r\n";
-                    break;
-                }    
-            } else {
-                echo "Wrong user\r\n";
-                echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                break;
-            }
-
-            echo "Wrong arguments\r\n";
-            msHelp();
-            break;
         case 'CCMovelSign':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help")
+                and $number == 3
+            ) {
                 msHelp();
                 break;
             } 
@@ -440,102 +233,10 @@ function handleAll($number,$argumentos)
             msHelp();
             break;
         case 'mms':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
-                mmsHelp();
-                break;
-            } 
-
-            if (($argumentos[2] == "-prod") and ($number == 5)) {
-                if (itsUser($argumentos[3])) {
-                    if (itsPin($argumentos[4])) {
-                        if ($number == 5) {
-                            $client = getClient(1);
-
-                            $args = [
-                                "applicationId" => $GLOBALS['APPLICATION_ID'],
-                                "pin" => $argumentos[4],
-                                "userId" => $argumentos[3],
-                            ];
-
-                            $result = ccmovelmultiplesign($client, $args);
-                            $result = json_decode(json_encode($result), true);
-                            print_r($result);
-                            break;
-                        } else {
-                            echo "Wrong number of arguments, check -h for help.\r\n";
-                            break;
-                        }
-                    } else {
-                        echo "Wrong pin format\r\n";
-                        break;
-                    }
-                } else {
-                    echo "Wrong user\r\n";
-                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                    break;
-                }
-            }
-
-            if (($argumentos[2] == "-applicationId") and ($number == 6)) {
-                if (itsUser($argumentos[4])) {
-                    if (itsPin($argumentos[5])) {
-                        if ($number == 6) {
-                            $client = getClient(0);
-
-                            $args = [
-                                "applicationId" => $argumentos[3],
-                                "pin" => $argumentos[5],
-                                "userId" => $argumentos[4],
-                            ];
-
-                            $result = ccmovelmultiplesign($client, $args);
-                            $result = json_decode(json_encode($result), true);
-                            print_r($result);
-                            break;
-                        } else {
-                            echo "Wrong number of arguments, check -h for help.\r\n";
-                            break;
-                        }
-                    } else {
-                        echo "Wrong pin format\r\n";
-                        break;
-                    }    
-                } else {
-                    echo "Wrong user\r\n";
-                    echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                    break;
-                }
-            }
-
-            if (itsUser($argumentos[2]) and ($number == 4)) {
-                if (itsPin($argumentos[3])) {
-                    $client = getClient(0);
-
-                    $args = [
-                        "applicationId" => $GLOBALS['APPLICATION_ID'],
-                        "pin" => $argumentos[3],
-                        "userId" => $argumentos[2],
-                    ];
-
-                    $result = ccmovelmultiplesign($client, $args);
-                    $result = json_decode(json_encode($result), true);
-                    print_r($result);
-                    break;
-                } else {
-                    echo "Wrong pin format\r\n";
-                    break;
-                }    
-            } else {
-                echo "Wrong user\r\n";
-                echo "Correct format it's '+351 NNNNNNNNN'\r\n";
-                break;
-            }
-
-            echo "Wrong arguments\r\n";
-            mmsHelp();
-            break;
         case 'CCMovelMultipleSign':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help")
+                and $number == 3
+            ) {
                 mmsHelp();
                 break;
             } 
@@ -630,7 +331,10 @@ function handleAll($number,$argumentos)
             mmsHelp();
             break;
         case 'otp':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
+        case 'ValidateOtp':
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help")
+                and $number == 3
+            ) {
                 otpHelp();
                 break;
             } 
@@ -724,11 +428,11 @@ function handleAll($number,$argumentos)
             echo "Wrong arguments\r\n";
             otpHelp();
             break;
-        case 'ValidateOtp':
-            // just copy above...do later
-            break;
         case 'test':
-            if (($argumentos[2] == "-h" or $argumentos[2] == "--help") and $number == 3) {
+        case 'TestAll':
+            if (($argumentos[2] == "-h" or $argumentos[2] == "--help")
+                and $number == 3
+            ) {
                 testHelp();
                 break;
             } 
@@ -841,9 +545,6 @@ function handleAll($number,$argumentos)
 
             echo "Wrong arguments\r\n";
             testHelp();
-            break;
-        case 'TestAll':
-            testAll();
             break;
         default:
             echo "Use -h for usage :\r\n";

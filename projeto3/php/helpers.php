@@ -91,6 +91,36 @@ function stringSplit($certs)
     return $cert_split;
 }
 
+function defaultHelp()
+{
+    echo "Use -h for usage :\r\n";
+    echo "    test_cmd_wsdl.php -h for all operations\r\n";
+    echo "    test_cmd_wsdl.php <oper1> -h for usage of operation <oper1>\r\n";
+}
+
+function helpHelp()
+{
+    echo "usage: test_cmd_wsdl.php [-h] [-V]\r\n";
+    echo "                        {GetCertificate,gc,CCMovelSign,ms,";
+    echo "CCMovelMultipleSign,mms,ValidateOtp,otp,TestAll,test}\r\n";
+    echo "                        ...\r\n\r\n";
+    echo $GLOBALS['TEXT'];
+    echo "\r\n";
+    echo "optional arguments:\r\n";
+    echo "  -h, --help           show this help message and exit\r\n";
+    echo "  -h, --help           show program version\r\n\r\n";
+    echo "CCMovelDigitalSignature Service:\r\n";
+    echo "  {GetCertificate,gc,CCMovelSign,ms,CCMovelMultipleSign,mms,";
+    echo "ValidateOtp,otp,TestAll,test} -> Signature CMD (SCMD) operations";
+    echo "\r\n\r\n";
+    echo "    GetCertificate (gc)       -> Get user certificate\r\n";
+    echo "    CCMovelSign (ms)          -> Start signature process\r\n";
+    echo "    CCMovelMultipleSign (mms) -> Start multiple signature process";
+    echo "\r\n    ValidateOtp (otp)         -> Validate OTP\r\n";
+    echo "    TestAll (test)            -> Automatically test all comands";
+    echo "\r\n";
+}
+
 function gcHelp()
 {
     echo "usage: test_cmd_wsdl.php GetCertificate ";
