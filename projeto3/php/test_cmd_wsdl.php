@@ -848,15 +848,17 @@ function test_all($client, $args) {
     $cert_split[2] = $cert_split[2]. $str_final;
 
     $cert_chain = [
-
+        "User" => openssl_x509_parse($cert_split[0]),
+        "Root" => openssl_x509_parse($cert_split[1]),
+        "CA" => openssl_x509_parse($cert_split[2]),
     ];
 
-    //echo "$cert_split[0]\r\n";
-    //echo "$cert_split[1]\r\n";
-    //echo "$cert_split[2]\r\n";
+    /*
+    if ($myfile = fopen($args["file"],"r")) {
+        $readFile = fread($myfile,filesize($argus["file"]));
+    } else {
 
-    //print_r($certs);
-
+    }*/
 
 
 
